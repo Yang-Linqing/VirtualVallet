@@ -8,9 +8,9 @@
 import SwiftUI
 
 @main
-struct Virtual_WalletApp: App {
+struct VirtualWalletApp: App {
     var body: some Scene {
-        DocumentGroup(newDocument: Virtual_WalletDocument()) { file in
+        DocumentGroup(newDocument: VirtualWalletDocument()) { file in
             ContentView(document: file.$document)
         }
     }

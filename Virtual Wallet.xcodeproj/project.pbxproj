@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A1F39AF5287171C6005F58DF /* Virtual_WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F39AF4287171C6005F58DF /* Virtual_WalletApp.swift */; };
-		A1F39AF7287171C6005F58DF /* Virtual_WalletDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F39AF6287171C6005F58DF /* Virtual_WalletDocument.swift */; };
+		A1892878287175E6006414D3 /* VirtualWalletDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1892877287175E6006414D3 /* VirtualWalletDocument.swift */; };
+		A193D8D62871B8B8001FE760 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D52871B8B8001FE760 /* Wallet.swift */; };
+		A193D8D82871B90C001FE760 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D72871B90C001FE760 /* Transaction.swift */; };
+		A193D8DA2871C143001FE760 /* TransactionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D92871C143001FE760 /* TransactionEditorView.swift */; };
+		A193D8DC2871C3D3001FE760 /* PriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8DB2871C3D3001FE760 /* PriceField.swift */; };
+		A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A1A9BD28732E120009E827 /* CurrencyText.swift */; };
+		A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29828718D56005885FE /* PrimaryWalletView.swift */; };
+		A1B1A29B28718FC2005885FE /* RegularWalletRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */; };
+		A1B1A29D287192E9005885FE /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29C287192E9005885FE /* WalletView.swift */; };
+		A1F39AF5287171C6005F58DF /* VirtualWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F39AF4287171C6005F58DF /* VirtualWalletApp.swift */; };
 		A1F39AF9287171C6005F58DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F39AF8287171C6005F58DF /* ContentView.swift */; };
 		A1F39AFB287171C9005F58DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1F39AFA287171C9005F58DF /* Assets.xcassets */; };
 		A1F39B00287171C9005F58DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1F39AFF287171C9005F58DF /* Preview Assets.xcassets */; };
@@ -35,9 +43,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A1892877287175E6006414D3 /* VirtualWalletDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualWalletDocument.swift; sourceTree = "<group>"; };
+		A193D8D52871B8B8001FE760 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		A193D8D72871B90C001FE760 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		A193D8D92871C143001FE760 /* TransactionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEditorView.swift; sourceTree = "<group>"; };
+		A193D8DB2871C3D3001FE760 /* PriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceField.swift; sourceTree = "<group>"; };
+		A1A1A9BD28732E120009E827 /* CurrencyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyText.swift; sourceTree = SOURCE_ROOT; };
+		A1B1A29828718D56005885FE /* PrimaryWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryWalletView.swift; sourceTree = "<group>"; };
+		A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularWalletRow.swift; sourceTree = "<group>"; };
+		A1B1A29C287192E9005885FE /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletView.swift; path = "Virtual Wallet/WalletView.swift"; sourceTree = SOURCE_ROOT; };
 		A1F39AF1287171C6005F58DF /* Virtual Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1F39AF4287171C6005F58DF /* Virtual_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Virtual_WalletApp.swift; sourceTree = "<group>"; };
-		A1F39AF6287171C6005F58DF /* Virtual_WalletDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Virtual_WalletDocument.swift; sourceTree = "<group>"; };
+		A1F39AF4287171C6005F58DF /* VirtualWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualWalletApp.swift; sourceTree = "<group>"; };
 		A1F39AF8287171C6005F58DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1F39AFA287171C9005F58DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1F39AFC287171C9005F58DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +91,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A1892879287175F2006414D3 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				A1892877287175E6006414D3 /* VirtualWalletDocument.swift */,
+				A193D8D52871B8B8001FE760 /* Wallet.swift */,
+				A193D8D72871B90C001FE760 /* Transaction.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		A1B1A29528718D0F005885FE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1A1A9BD28732E120009E827 /* CurrencyText.swift */,
+				A1B1A29C287192E9005885FE /* WalletView.swift */,
+				A193D8D92871C143001FE760 /* TransactionEditorView.swift */,
+				A193D8DB2871C3D3001FE760 /* PriceField.swift */,
+				A1B1A29828718D56005885FE /* PrimaryWalletView.swift */,
+				A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A1F39AE8287171C6005F58DF = {
 			isa = PBXGroup;
 			children = (
@@ -98,8 +137,9 @@
 		A1F39AF3287171C6005F58DF /* Virtual Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				A1F39AF4287171C6005F58DF /* Virtual_WalletApp.swift */,
-				A1F39AF6287171C6005F58DF /* Virtual_WalletDocument.swift */,
+				A1B1A29528718D0F005885FE /* Views */,
+				A1892879287175F2006414D3 /* Data Model */,
+				A1F39AF4287171C6005F58DF /* VirtualWalletApp.swift */,
 				A1F39AF8287171C6005F58DF /* ContentView.swift */,
 				A1F39AFA287171C9005F58DF /* Assets.xcassets */,
 				A1F39AFC287171C9005F58DF /* Info.plist */,
@@ -215,10 +255,10 @@
 			};
 			buildConfigurationList = A1F39AEC287171C6005F58DF /* Build configuration list for PBXProject "Virtual Wallet" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				"zh-Hans",
 				Base,
 			);
 			mainGroup = A1F39AE8287171C6005F58DF;
@@ -264,9 +304,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1F39AF5287171C6005F58DF /* Virtual_WalletApp.swift in Sources */,
-				A1F39AF7287171C6005F58DF /* Virtual_WalletDocument.swift in Sources */,
+				A193D8DA2871C143001FE760 /* TransactionEditorView.swift in Sources */,
+				A1F39AF5287171C6005F58DF /* VirtualWalletApp.swift in Sources */,
+				A193D8D62871B8B8001FE760 /* Wallet.swift in Sources */,
+				A193D8D82871B90C001FE760 /* Transaction.swift in Sources */,
+				A1B1A29B28718FC2005885FE /* RegularWalletRow.swift in Sources */,
+				A1892878287175E6006414D3 /* VirtualWalletDocument.swift in Sources */,
+				A193D8DC2871C3D3001FE760 /* PriceField.swift in Sources */,
+				A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */,
+				A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */,
 				A1F39AF9287171C6005F58DF /* ContentView.swift in Sources */,
+				A1B1A29D287192E9005885FE /* WalletView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,9 +469,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Virtual Wallet/Preview Content\"";
+				DEVELOPMENT_TEAM = M5D9G326RB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Virtual Wallet/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "虚拟钱包";
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -452,9 +502,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Virtual Wallet/Preview Content\"";
+				DEVELOPMENT_TEAM = M5D9G326RB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Virtual Wallet/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "虚拟钱包";
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
