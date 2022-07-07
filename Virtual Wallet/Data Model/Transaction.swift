@@ -19,6 +19,13 @@ struct Transaction: Codable, Identifiable, Hashable {
     var total: Int
     var type: String
     
+    init(id: UUID = UUID(), date: Date = Date(), total: Int = 0, type: String = "") {
+        self.id = id
+        self.date = date
+        self.total = total
+        self.type = type
+    }
+    
     static let sampleSet = [
         Transaction(date: Date(), total: -256, type: "小餐馆"),
         Transaction(date: Date(), total: -5500, type: "KFC"),

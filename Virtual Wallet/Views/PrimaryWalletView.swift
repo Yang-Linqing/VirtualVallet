@@ -26,7 +26,10 @@ struct PrimaryWalletView: View {
 
 struct PrimaryWalletView_Previews: PreviewProvider {
     static var previews: some View {
-        PrimaryWalletView(wallet: .constant(Wallet(name: "每日饮食", transactions: [])))
-            .previewLayout(.fixed(width: 400, height: 200))
+        NavigationStack {
+            List {
+                PrimaryWalletView(wallet: .constant(Wallet(name: "每日饮食", transactions: [])))
+            }
+        }
     }
 }

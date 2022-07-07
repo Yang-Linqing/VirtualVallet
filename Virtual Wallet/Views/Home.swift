@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct Home: View {
     @Binding var document: VirtualWalletDocument
     
     private var total: Int {
@@ -22,9 +22,17 @@ struct ContentView: View {
         List {
             Section {
                 PrimaryWalletView(wallet: $document.primaryWallet)
-            } header: {
-                Text("主要")
-                    .font(.headline)
+                HStack() {
+                    VStack(alignment: .leading) {
+                        Text("所有钱包")
+                            .font(.headline)
+                        CurrencyText(total)
+                    }
+                    Spacer()
+                    AddTransactionButton(document: $document)
+                        .frame(width: 120, height: 50)
+                }
+                .buttonStyle(.plain)
             }
             Section {
                 ForEach($document.secondaryWallet) { wallet in
@@ -73,16 +81,13 @@ struct ContentView: View {
                 }
             }
         }
-        .toolbar {
-            CurrencyText(total)
-        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            ContentView(document: .constant(VirtualWalletDocument()))
+            Home(document: .constant(VirtualWalletDocument()))
         }
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct VirtualWalletApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: VirtualWalletDocument()) { file in
-            ContentView(document: file.$document)
+            Home(document: file.$document)
         }
     }
 }
