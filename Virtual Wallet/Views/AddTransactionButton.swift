@@ -32,7 +32,7 @@ struct AddTransactionButton: View {
             }
             .tint(.primary)
             .sheet(isPresented: $shouldPresentEditor) {
-                TransactionEditorView(transaction: $document.primaryWallet.transactions.first!)
+                TransactionEditorView(transaction: $document.primaryWallet.transactions.first!, suggestions: document.primaryWallet.transactionTypeSuggestions)
             }
         }
     }

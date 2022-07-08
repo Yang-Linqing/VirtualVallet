@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1311A92287868BA008A89A9 /* TextSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1311A91287868BA008A89A9 /* TextSuggestionView.swift */; };
 		A1892878287175E6006414D3 /* VirtualWalletDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1892877287175E6006414D3 /* VirtualWalletDocument.swift */; };
 		A193D8D62871B8B8001FE760 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D52871B8B8001FE760 /* Wallet.swift */; };
 		A193D8D82871B90C001FE760 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D72871B90C001FE760 /* Transaction.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A1311A91287868BA008A89A9 /* TextSuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSuggestionView.swift; sourceTree = "<group>"; };
 		A1892877287175E6006414D3 /* VirtualWalletDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualWalletDocument.swift; sourceTree = "<group>"; };
 		A193D8D52871B8B8001FE760 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		A193D8D72871B90C001FE760 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				A1ADEAB728771DAF0098FB9E /* AddTransactionButton.swift */,
 				A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */,
 				A1F39AF8287171C6005F58DF /* Home.swift */,
+				A1311A91287868BA008A89A9 /* TextSuggestionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				A1ADEAB828771DAF0098FB9E /* AddTransactionButton.swift in Sources */,
 				A193D8DA2871C143001FE760 /* TransactionEditorView.swift in Sources */,
 				A1F39AF5287171C6005F58DF /* VirtualWalletApp.swift in Sources */,
+				A1311A92287868BA008A89A9 /* TextSuggestionView.swift in Sources */,
 				A193D8D62871B8B8001FE760 /* Wallet.swift in Sources */,
 				A193D8D82871B90C001FE760 /* Transaction.swift in Sources */,
 				A1B1A29B28718FC2005885FE /* RegularWalletRow.swift in Sources */,

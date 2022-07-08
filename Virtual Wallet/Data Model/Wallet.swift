@@ -26,5 +26,17 @@ struct Wallet: Codable, Identifiable, Hashable {
         Wallet(name: "其他", transactions: Transaction.sample()),
         Wallet(name: "小金库", transactions: Transaction.sample(7))
     ]
+    
+    var transactionTypeSuggestions: [String] {
+        var suggestions = Set<String>()
+        var result = [String]()
+        transactions.forEach { transaction in
+            if !suggestions.contains(transaction.type) {
+                result.append(transaction.type)
+                suggestions.insert(transaction.type)
+            }
+        }
+        return result
+    }
 }
 

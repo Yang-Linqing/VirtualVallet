@@ -13,7 +13,7 @@ struct WalletView: View {
     var body: some View {
         List {
             ForEach($wallet.transactions) { transaction in
-                TransactionRow(transaction: transaction)
+                TransactionRow(transaction: transaction, suggestions: wallet.transactionTypeSuggestions)
             }
             .onMove { indexSet, newLocation in
                 wallet.transactions.move(fromOffsets: indexSet, toOffset: newLocation)

@@ -9,20 +9,14 @@ import SwiftUI
 
 struct TransactionEditorView: View {
     @Binding var transaction: Transaction
-    
-    @State private var editingType = ""
+    var suggestions: [String] = []
     
     var body: some View {
         NavigationStack {
             Form {
                 Section {
                     DatePicker(selection: $transaction.date, label: { Text("时间") })
-                    TextField(text: $editingType) {
-                        Text("类型")
-                    }
-                    .onSubmit {
-                        transaction.type = editingType
-                    }
+                    TextSuggestionView(text: $transaction.type, suggestions: suggestions)
                     PriceField(value: $transaction.total) {
                         Text("金额")
                     }
@@ -44,9 +38,6 @@ struct TransactionEditorView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("编辑交易")
         }
-        .onAppear {
-            editingType = transaction.type
-        }
     }
 }
 
@@ -59,6 +50,7 @@ fileprivate let dateFormatter: DateFormatter = {
 
 struct TransactionRow: View {
     @Binding var transaction: Transaction
+    var suggestions: [String] = []
     
     @State private var isPresented = false
     
@@ -77,7 +69,7 @@ struct TransactionRow: View {
             .foregroundColor(.primary)
         }
         .sheet(isPresented: $isPresented) {
-            TransactionEditorView(transaction: $transaction)
+            TransactionEditorView(transaction: $transaction, suggestions: suggestions)
         }
     }
 }
