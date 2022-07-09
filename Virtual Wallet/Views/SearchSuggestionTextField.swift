@@ -19,17 +19,44 @@ struct SearchSuggestionTextField: View {
     }
     
     @State private var editingText = ""
+    @FocusState private var isEditing: Bool
     
     var body: some View {
-        NavigationLink {
-            SearchSuggestionTextPage(label, text: $text, suggestions: suggestions)
-        } label: {
+        VStack {
             HStack {
                 Text(label)
                 Spacer()
-                Text(text)
-                    .foregroundStyle(.secondary)
+                TextField("", text: $editingText)
+                    .focused($isEditing)
+                    .onSubmit {
+                        text = editingText
+                    }
+                    .transformEnvironment(\.layoutDirection) { direction in
+                        if direction == .leftToRight {
+                            direction = .rightToLeft
+                        } else {
+                            direction = .leftToRight
+                        }
+                    }
             }
+            if isEditing {
+                AnyLayout(FlowHStack()) {
+                    ForEach(suggestions, id: \.self) { suggest in
+                        if suggest != "" {
+                            Button(suggest) {
+                                text = suggest
+                                editingText = suggest
+                            }
+                            .buttonStyle(.bordered)
+                            .buttonBorderShape(.capsule)
+                            .tint(.primary)
+                        }
+                    }
+                }
+            }
+        }
+        .onAppear {
+            editingText = text
         }
     }
 }
@@ -103,11 +130,11 @@ struct SearchSuggestionTextField_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationStack {
-//            Form {
-//                SearchSuggestionTextField("SearchText", text: $text, suggestions: suggestions)
-//            }
-//            .navigationTitle("Form")
-            SearchSuggestionTextPage("菜品", text: $text, suggestions: suggestions)
+            Form {
+                SearchSuggestionTextField("SearchText", text: $text, suggestions: suggestions)
+            }
+            .navigationTitle("Form")
+            //SearchSuggestionTextPage("菜品", text: $text, suggestions: suggestions)
         }
     }
 }

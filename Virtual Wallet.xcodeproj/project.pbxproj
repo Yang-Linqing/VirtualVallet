@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A1311A92287868BA008A89A9 /* TextSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1311A91287868BA008A89A9 /* TextSuggestionView.swift */; };
 		A1311A9428791469008A89A9 /* SearchSuggestionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1311A9328791469008A89A9 /* SearchSuggestionTextField.swift */; };
+		A175328E287976B100036022 /* FlowHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A175328D287976B100036022 /* FlowHStack.swift */; };
 		A1892878287175E6006414D3 /* VirtualWalletDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1892877287175E6006414D3 /* VirtualWalletDocument.swift */; };
 		A193D8D62871B8B8001FE760 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D52871B8B8001FE760 /* Wallet.swift */; };
 		A193D8D82871B90C001FE760 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D72871B90C001FE760 /* Transaction.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		A1311A91287868BA008A89A9 /* TextSuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSuggestionView.swift; sourceTree = "<group>"; };
 		A1311A9328791469008A89A9 /* SearchSuggestionTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestionTextField.swift; sourceTree = "<group>"; };
+		A175328D287976B100036022 /* FlowHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowHStack.swift; sourceTree = "<group>"; };
 		A1892877287175E6006414D3 /* VirtualWalletDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualWalletDocument.swift; sourceTree = "<group>"; };
 		A193D8D52871B8B8001FE760 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		A193D8D72871B90C001FE760 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				A1F39AF8287171C6005F58DF /* Home.swift */,
 				A1311A91287868BA008A89A9 /* TextSuggestionView.swift */,
 				A1311A9328791469008A89A9 /* SearchSuggestionTextField.swift */,
+				A175328D287976B100036022 /* FlowHStack.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */,
 				A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */,
 				A1F39AF9287171C6005F58DF /* Home.swift in Sources */,
+				A175328E287976B100036022 /* FlowHStack.swift in Sources */,
 				A1B1A29D287192E9005885FE /* WalletView.swift in Sources */,
 				A1311A9428791469008A89A9 /* SearchSuggestionTextField.swift in Sources */,
 			);
