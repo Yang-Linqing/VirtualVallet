@@ -18,18 +18,13 @@ struct AddTransactionButton: View {
                 document.primaryWallet.transactions.insert(Transaction(), at: 0)
                 shouldPresentEditor = true
             } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    HStack {
-                        Image(systemName: "pencil.line")
-                        Text("记账")
-                    }
-                    .foregroundColor(.primary)
-                    .colorInvert()
-                    .padding(.horizontal, 16.0)
-                    .padding(.vertical, 8.0)
+                HStack {
+                    Image(systemName: "pencil.line")
+                    Text("记账")
                 }
+                .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
             }
+            .buttonStyle(.borderedProminent)
             .tint(.primary)
             .sheet(isPresented: $shouldPresentEditor) {
                 TransactionEditorView(transaction: $document.primaryWallet.transactions.first!, suggestions: document.primaryWallet.transactionTypeSuggestions)

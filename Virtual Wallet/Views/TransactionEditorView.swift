@@ -16,7 +16,7 @@ struct TransactionEditorView: View {
             Form {
                 Section {
                     DatePicker(selection: $transaction.date, label: { Text("时间") })
-                    TextSuggestionView(text: $transaction.type, suggestions: suggestions)
+                    SearchSuggestionTextField("类别", text: $transaction.type, suggestions: suggestions)
                     PriceField(value: $transaction.total) {
                         Text("金额")
                     }

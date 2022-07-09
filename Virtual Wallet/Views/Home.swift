@@ -30,7 +30,6 @@ struct Home: View {
                     }
                     Spacer()
                     AddTransactionButton(document: $document)
-                        .frame(width: 120, height: 50)
                 }
                 .buttonStyle(.plain)
             }

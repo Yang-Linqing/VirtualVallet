@@ -11,36 +11,32 @@ struct TextSuggestionView: View {
     @Binding var text: String
     var suggestions: [String]
     
-    @FocusState private var isEditing: Bool
     @State private var editingText = ""
     
     var body: some View {
         VStack {
             TextField("", text: $editingText)
-                .focused($isEditing)
                 .onSubmit {
                     text = editingText
                 }
-            if isEditing {
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(suggestions, id: \.self) { suggestion in
-                            if text == suggestion {
-                                Button(suggestion) {
-                                    text = suggestion
-                                    editingText = suggestion
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .buttonBorderShape(.capsule)
-                            } else {
-                                Button(suggestion) {
-                                    text = suggestion
-                                    editingText = suggestion
-                                }
-                                .buttonStyle(.bordered)
-                                .buttonBorderShape(.capsule)
-                                .tint(.primary)
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(suggestions, id: \.self) { suggestion in
+                        if text == suggestion {
+                            Button(suggestion) {
+                                text = suggestion
+                                editingText = suggestion
                             }
+                            .buttonStyle(.borderedProminent)
+                            .buttonBorderShape(.capsule)
+                        } else {
+                            Button(suggestion) {
+                                text = suggestion
+                                editingText = suggestion
+                            }
+                            .buttonStyle(.bordered)
+                            .buttonBorderShape(.capsule)
+                            .tint(.primary)
                         }
                     }
                 }
