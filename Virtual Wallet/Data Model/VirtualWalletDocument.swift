@@ -8,6 +8,7 @@
 import SwiftUI
 import UniformTypeIdentifiers
 import OSLog
+import WidgetKit
 
 fileprivate let logger = Logger(subsystem: "cool.linkin.Virtual-Wallet", category: "Document")
 
@@ -48,10 +49,27 @@ struct VirtualWalletDocument: FileDocument, Codable {
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        logger.log("开始保存文件。")
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         encoder.outputFormatting = .prettyPrinted
         let data = try encoder.encode(self)
+        logger.log("文件序列化完成。")
+        logger.log("小组件更新: 开始。")
+        let entry = WalletBalanceEntry(
+            primary: WalletEntryData(name: self.primaryWallet.name, balance: self.primaryWallet.balance),
+            secondary: self.secondaryWallet.map({ wallet in
+                WalletEntryData(name: wallet.name, balance: wallet.balance)
+            })
+        )
+        let entryData = try encoder.encode(entry)
+        if let userDefaults = UserDefaults(suiteName: "group.cool.linkin.Virtual-Wallet") {
+            userDefaults.set(String(data: entryData, encoding: .utf8), forKey: "cool.linkin.Virtual-Wallet.Widget.WalletBalance")
+            WidgetCenter.shared.reloadTimelines(ofKind: "cool.linkin.Virtual-Wallet.Widget.WalletBalance")
+            logger.log("小组件更新: 完成。")
+        } else {
+            logger.log(level: .error, "小组件更新: 无法访问 App 与小组件的共享配置。")
+        }
         return FileWrapper(regularFileWithContents: data)
     }
     
