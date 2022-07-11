@@ -11,6 +11,29 @@ struct Wallet: Codable, Identifiable, Hashable {
     var id = UUID()
     var name: String
     var transactions: [Transaction]
+    var transactionGroups: [TransactionGroup] {
+        var date: Date!
+        var result: [TransactionGroup] = []
+        var group: TransactionGroup!
+        transactions.forEach { transaction in
+            if date == nil {
+                group = TransactionGroup(date: transaction.date, transactions: [transaction])
+                date = transaction.date
+            } else {
+                if Calendar.current.isDate(transaction.date, inSameDayAs: date) {
+                    group.transactions.append(transaction)
+                } else {
+                    result.append(group)
+                    group = TransactionGroup(date: transaction.date, transactions: [transaction])
+                    date = transaction.date
+                }
+            }
+        }
+        if group != nil {
+            result.append(group)
+        }
+        return result
+    }
     
     /// 钱包余额。
     ///

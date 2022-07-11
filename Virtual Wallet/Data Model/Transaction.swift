@@ -48,3 +48,11 @@ struct Transaction: Codable, Identifiable, Hashable {
         }
     }
 }
+
+struct TransactionGroup: Identifiable {
+    var id: Date {
+        date
+    }
+    var date: Date
+    var transactions: [Transaction]
+}

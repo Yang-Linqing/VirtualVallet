@@ -58,13 +58,16 @@ struct TransactionRow: View {
         Button {
             isPresented = true
         } label: {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("\(transaction.date, formatter: dateFormatter)")
+            VStack(alignment: .leading) {
+                Text("\(transaction.date, formatter: dateFormatter)")
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .foregroundColor(.secondary)
+                HStack {
                     Text(transaction.type)
+                    Spacer()
+                    CurrencyText(transaction.total)
                 }
-                Spacer()
-                Text(transaction.total.currencyString)
             }
             .foregroundColor(.primary)
         }
