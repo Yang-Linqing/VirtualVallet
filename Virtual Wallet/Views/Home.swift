@@ -17,6 +17,8 @@ struct Home: View {
             partialResult + wallet.balance
         })
     }
+    
+    @State private var showTransferView = false
 
     var body: some View {
         List {
@@ -78,6 +80,17 @@ struct Home: View {
                     }
 
                 }
+            }
+        }
+        .toolbar {
+            Button {
+                showTransferView = true
+            } label: {
+                Label("转账", systemImage: "arrow.left.arrow.right")
+            }
+            .sheet(isPresented: $showTransferView) {
+                TransferView()
+                    .document($document)
             }
         }
     }

@@ -81,3 +81,20 @@ extension Int {
         String(format: "¥ %.2f", Double(self)/100)
     }
 }
+
+struct DocumentKey: EnvironmentKey {
+    static var defaultValue: Binding<VirtualWalletDocument> = .constant(VirtualWalletDocument())
+}
+
+extension EnvironmentValues {
+    var document: Binding<VirtualWalletDocument> {
+        get { self[DocumentKey.self] }
+        set { self[DocumentKey.self] = newValue }
+    }
+}
+
+extension View {
+    func document(_ document: Binding<VirtualWalletDocument>) -> some View {
+        environment(\.document, document)
+    }
+}

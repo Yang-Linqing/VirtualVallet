@@ -23,6 +23,7 @@
 		A193D8D82871B90C001FE760 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D72871B90C001FE760 /* Transaction.swift */; };
 		A193D8DA2871C143001FE760 /* TransactionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D92871C143001FE760 /* TransactionEditorView.swift */; };
 		A193D8DC2871C3D3001FE760 /* PriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8DB2871C3D3001FE760 /* PriceField.swift */; };
+		A196C1A52882DC0400948C14 /* TransferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A196C1A42882DC0400948C14 /* TransferView.swift */; };
 		A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A1A9BD28732E120009E827 /* CurrencyText.swift */; };
 		A1ADEAB828771DAF0098FB9E /* AddTransactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADEAB728771DAF0098FB9E /* AddTransactionButton.swift */; };
 		A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29828718D56005885FE /* PrimaryWalletView.swift */; };
@@ -92,6 +93,7 @@
 		A193D8D72871B90C001FE760 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		A193D8D92871C143001FE760 /* TransactionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEditorView.swift; sourceTree = "<group>"; };
 		A193D8DB2871C3D3001FE760 /* PriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceField.swift; sourceTree = "<group>"; };
+		A196C1A42882DC0400948C14 /* TransferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferView.swift; sourceTree = "<group>"; };
 		A1A1A9BD28732E120009E827 /* CurrencyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyText.swift; sourceTree = SOURCE_ROOT; };
 		A1ADEAB728771DAF0098FB9E /* AddTransactionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionButton.swift; sourceTree = "<group>"; };
 		A1B1A29828718D56005885FE /* PrimaryWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryWalletView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				A1A1A9BD28732E120009E827 /* CurrencyText.swift */,
 				A1B1A29C287192E9005885FE /* WalletView.swift */,
 				A193D8D92871C143001FE760 /* TransactionEditorView.swift */,
+				A196C1A42882DC0400948C14 /* TransferView.swift */,
 				A193D8DB2871C3D3001FE760 /* PriceField.swift */,
 				A1B1A29828718D56005885FE /* PrimaryWalletView.swift */,
 				A1ADEAB728771DAF0098FB9E /* AddTransactionButton.swift */,
@@ -439,6 +442,7 @@
 				A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */,
 				A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */,
 				A1F39AF9287171C6005F58DF /* Home.swift in Sources */,
+				A196C1A52882DC0400948C14 /* TransferView.swift in Sources */,
 				A175328E287976B100036022 /* FlowHStack.swift in Sources */,
 				A1B1A29D287192E9005885FE /* WalletView.swift in Sources */,
 				A1311A9428791469008A89A9 /* SearchSuggestionTextField.swift in Sources */,
