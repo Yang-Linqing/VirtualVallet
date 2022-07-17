@@ -7,18 +7,40 @@
 
 import SwiftUI
 
-struct TextSuggestionView: View {
+struct HTextSuggestionView: View {
+    var label: String
     @Binding var text: String
     var suggestions: [String]
+    
+    init(_ label: String, text: Binding<String>, suggestions: [String]) {
+        self.label = label
+        self._text = text
+        self.suggestions = suggestions
+    }
     
     @State private var editingText = ""
     
     var body: some View {
-        VStack {
+        HStack {
+            Text(label)
+            Spacer()
             TextField("", text: $editingText)
                 .onSubmit {
                     text = editingText
                 }
+                .transformEnvironment(\.layoutDirection) { direction in
+                    if direction == .leftToRight {
+                        direction = .rightToLeft
+                    } else {
+                        direction = .leftToRight
+                    }
+                }
+        }
+        .onAppear {
+            editingText = text
+        }
+        HStack {
+            Text("建议")
             ScrollView(.horizontal) {
                 HStack {
                     ForEach(suggestions, id: \.self) { suggestion in
@@ -42,18 +64,15 @@ struct TextSuggestionView: View {
                 }
             }
         }
-        .onAppear {
-            editingText = text
-        }
     }
 }
 
-struct TextSuggestionView_Previews: PreviewProvider {
+struct HTextSuggestionView_Previews: PreviewProvider {
     @State private static var text = ""
     @State private static var suggestions = ["struct", "PreviewProvider", "菜", "吃席", "KFC", "麦当劳", "紫菜蛋花汤", "滚蛋汤"]
     static var previews: some View {
         Form {
-            TextSuggestionView(text: $text, suggestions: suggestions)
+            HTextSuggestionView("Label", text: $text, suggestions: suggestions)
         }
     }
 }

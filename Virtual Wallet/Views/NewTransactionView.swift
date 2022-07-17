@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct TransferView: View {
+struct NewTransactionView: View {
     @Environment(\.document) private var document
     @Environment(\.dismiss) private var dismiss
     
     @State private var incomingWallet: Wallet?
     @State private var targetWallet: Wallet?
     @State private var date = Date()
+    @State private var type = ""
     @State private var total = 0
         
     var body: some View {
@@ -23,41 +24,59 @@ struct TransferView: View {
                     Picker(selection: $incomingWallet) {
                         SelectWalletView()
                     } label: {
-                        Text("转自")
+                        Text("付款钱包")
+                    }
+                    .onAppear {
+                        incomingWallet = document.primaryWallet.wrappedValue
                     }
                     Picker(selection: $targetWallet) {
                         SelectWalletView()
                     } label: {
-                        Text("转至")
+                        Text("收款钱包")
                     }
-                    DatePicker(selection: $date, label: { Text("日期") })
-                    PriceField(value: $total) {
-                        Text("总额")
+                } header: {
+                    HStack {
+                        SectionTitle("钱包")
+                        Spacer()
+                        Button("交换") {
+                            let temp = incomingWallet
+                            incomingWallet = targetWallet
+                            targetWallet = temp
+                        }
                     }
+                } footer: {
+                    Text("要从钱包之间转账，请同时选择付款钱包和收款钱包。")
                 }
                 Section {
+                    DatePicker(selection: $date, label: { Text("日期") })
+                    HTextSuggestionView("类别", text: $type, suggestions: (incomingWallet?.transactionTypeSuggestions ?? []) + (targetWallet?.transactionTypeSuggestions ?? []))
+                    PriceField(value: $total, positiveOnly: true) {
+                        Text("总额")
+                    }
+                } header: {
+                    SectionTitle("交易信息")
+                }
+            }
+            .navigationTitle("记账")
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
                     Button {
                         saveTransfer()
                     } label: {
                         Text("保存")
-                            .frame(maxWidth: .infinity)
-                            .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
                     }
-                    .buttonStyle(.borderedProminent)
-                    .buttonBorderShape(.roundedRectangle(radius: 0))
-                    .disabled(incomingWallet == nil || targetWallet == nil)
-                    .listRowInsets(EdgeInsets())
+                    .disabled(incomingWallet == nil && targetWallet == nil)
+                }
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("删除", role: .destructive) {
+                        dismiss()
+                    }
                 }
             }
-            .navigationTitle("转账")
         }
     }
     
     func saveTransfer() {
-        guard incomingWallet != nil && targetWallet != nil else {
-            return
-        }
-
         check(document.primaryWallet)
         document.secondaryWallet.forEach { wallet in
             check(wallet)
@@ -71,11 +90,25 @@ struct TransferView: View {
     
     func check(_ wallet: Binding<Wallet>) {
         if wallet.id == incomingWallet?.id {
-            let outgoingTransaction = Transaction(date: self.date, total: -abs(self.total), type: "转至\(targetWallet!.name)")
+            var outgoingTransaction = Transaction()
+            outgoingTransaction.date = Date()
+            outgoingTransaction.total = -abs(self.total)
+            if self.type == "" {
+                outgoingTransaction.type = "转至\(targetWallet?.name ?? "")"
+            } else {
+                outgoingTransaction.type = self.type
+            }
             wallet.wrappedValue.transactions.insert(outgoingTransaction, at: 0)
         }
         if wallet.id == targetWallet?.id {
-            let incomingTransaction = Transaction(date: self.date, total: abs(self.total), type: "转自\(incomingWallet!.name)")
+            var incomingTransaction = Transaction()
+            incomingTransaction.date = Date()
+            incomingTransaction.total = abs(self.total)
+            if self.type == "" {
+                incomingTransaction.type = "转自\(incomingWallet?.name ?? "")"
+            } else {
+                incomingTransaction.type = self.type
+            }
             wallet.wrappedValue.transactions.insert(incomingTransaction, at: 0)
         }
     }
@@ -109,7 +142,7 @@ struct TransferWizardView_Previews: PreviewProvider {
     @State private static var document = VirtualWalletDocument()
     
     static var previews: some View {
-        TransferView()
+        NewTransactionView()
             .document($document)
     }
 }

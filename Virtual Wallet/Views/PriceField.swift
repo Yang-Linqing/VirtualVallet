@@ -9,7 +9,8 @@ import SwiftUI
 
 struct PriceField<L: View>: View {
     @Binding var value: Int
-    let label: () -> L
+    var positiveOnly = false
+    var label: () -> L
         
     var body: some View {
         VStack {
@@ -46,10 +47,12 @@ struct PriceField<L: View>: View {
                 }
                 digitButton(val: 0)
                 HStack {
-                    Button {
-                        value = -value
-                    } label: {
-                        buttonLabel(text: "-/+")
+                    if !positiveOnly {
+                        Button {
+                            value = -value
+                        } label: {
+                            buttonLabel(text: "-/+")
+                        }
                     }
                     Button {
                         value = 0
@@ -78,7 +81,11 @@ struct PriceField<L: View>: View {
     func digitButton(val: Int) -> some View {
         Button {
             if value == 0 {
-                value = -val
+                if positiveOnly {
+                    value = val
+                } else {
+                    value = -val
+                }
             } else if value > 0 {
                 value = 10 * value + val
             } else {

@@ -31,7 +31,18 @@ struct Home: View {
                         CurrencyText(total)
                     }
                     Spacer()
-                    AddTransactionButton(document: $document)
+                    Button {
+                        showTransferView = true
+                    } label: {
+                        Image(systemName: "arrow.left.arrow.right")
+                        Text("记账")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(Color.primary)
+                    .sheet(isPresented: $showTransferView) {
+                        NewTransactionView()
+                            .document($document)
+                    }
                 }
                 .buttonStyle(.plain)
             }
@@ -83,15 +94,7 @@ struct Home: View {
             }
         }
         .toolbar {
-            Button {
-                showTransferView = true
-            } label: {
-                Label("转账", systemImage: "arrow.left.arrow.right")
-            }
-            .sheet(isPresented: $showTransferView) {
-                TransferView()
-                    .document($document)
-            }
+            
         }
     }
 }
