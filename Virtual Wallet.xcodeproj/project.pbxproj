@@ -30,6 +30,7 @@
 		A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29828718D56005885FE /* PrimaryWalletView.swift */; };
 		A1B1A29B28718FC2005885FE /* RegularWalletRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */; };
 		A1B1A29D287192E9005885FE /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29C287192E9005885FE /* WalletView.swift */; };
+		A1E41FA5288C34F90015FF32 /* NewTransactionWizard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E41FA4288C34E40015FF32 /* NewTransactionWizard.swift */; };
 		A1F39AF5287171C6005F58DF /* VirtualWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F39AF4287171C6005F58DF /* VirtualWalletApp.swift */; };
 		A1F39AF9287171C6005F58DF /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F39AF8287171C6005F58DF /* Home.swift */; };
 		A1F39AFB287171C9005F58DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1F39AFA287171C9005F58DF /* Assets.xcassets */; };
@@ -101,6 +102,7 @@
 		A1B1A29828718D56005885FE /* PrimaryWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryWalletView.swift; sourceTree = "<group>"; };
 		A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularWalletRow.swift; sourceTree = "<group>"; };
 		A1B1A29C287192E9005885FE /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletView.swift; path = "Virtual Wallet/WalletView.swift"; sourceTree = SOURCE_ROOT; };
+		A1E41FA4288C34E40015FF32 /* NewTransactionWizard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionWizard.swift; sourceTree = "<group>"; };
 		A1F39AF1287171C6005F58DF /* Virtual Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtual Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F39AF4287171C6005F58DF /* VirtualWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualWalletApp.swift; sourceTree = "<group>"; };
 		A1F39AF8287171C6005F58DF /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				A1B1A29C287192E9005885FE /* WalletView.swift */,
 				A193D8D92871C143001FE760 /* TransactionEditorView.swift */,
 				A196C1A42882DC0400948C14 /* NewTransactionView.swift */,
+				A1E41FA4288C34E40015FF32 /* NewTransactionWizard.swift */,
 				A1AFF25D2883CE220041FCB9 /* SectionTitle.swift */,
 				A193D8DB2871C3D3001FE760 /* PriceField.swift */,
 				A1B1A29828718D56005885FE /* PrimaryWalletView.swift */,
@@ -443,6 +446,7 @@
 				A1AFF2602883D91C0041FCB9 /* HTextSuggestionView.swift in Sources */,
 				A193D8DC2871C3D3001FE760 /* PriceField.swift in Sources */,
 				A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */,
+				A1E41FA5288C34F90015FF32 /* NewTransactionWizard.swift in Sources */,
 				A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */,
 				A1F39AF9287171C6005F58DF /* Home.swift in Sources */,
 				A196C1A52882DC0400948C14 /* NewTransactionView.swift in Sources */,

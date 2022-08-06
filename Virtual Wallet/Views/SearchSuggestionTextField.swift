@@ -8,41 +8,52 @@
 import SwiftUI
 
 struct SearchSuggestionTextField: View {
-    var label: String
+    var label: String?
     @Binding var text: String
     var suggestions: [String]
     
-    init(_ label: String, text: Binding<String>, suggestions: [String]) {
+    init(_ label: String?, text: Binding<String>, suggestions: [String]) {
         self.label = label
         self._text = text
         self.suggestions = suggestions
     }
     
     @State private var editingText = ""
-    @FocusState private var isEditing: Bool
     
     var body: some View {
         VStack {
             HStack {
-                Text(label)
-                Spacer()
+                if label != nil {
+                    Text(label!)
+                    Spacer()
+                }
                 TextField("", text: $editingText)
-                    .focused($isEditing)
                     .onSubmit {
                         text = editingText
                     }
                     .transformEnvironment(\.layoutDirection) { direction in
-                        if direction == .leftToRight {
+                        if label == nil {
+                            return
+                        } else if direction == .leftToRight {
                             direction = .rightToLeft
+                            return
                         } else {
                             direction = .leftToRight
+                            return
                         }
                     }
             }
-            if isEditing {
-                AnyLayout(FlowHStack()) {
-                    ForEach(suggestions, id: \.self) { suggest in
-                        if suggest != "" {
+            AnyLayout(FlowHStack()) {
+                ForEach(suggestions, id: \.self) { suggest in
+                    if suggest != "" {
+                        if text == suggest {
+                            Button(suggest) {
+                                text = suggest
+                                editingText = suggest
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .buttonBorderShape(.capsule)
+                        } else {
                             Button(suggest) {
                                 text = suggest
                                 editingText = suggest
