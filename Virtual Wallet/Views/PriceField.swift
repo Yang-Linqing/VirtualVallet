@@ -11,6 +11,8 @@ struct PriceField<L: View>: View {
     @Binding var value: Int
     var positiveOnly = false
     var label: () -> L
+    
+    private let hapic = UIImpactFeedbackGenerator(style: .medium)
         
     var body: some View {
         VStack {
@@ -42,6 +44,7 @@ struct PriceField<L: View>: View {
             HStack {
                 Button {
                     value = value * 100
+                    hapic.impactOccurred()
                 } label: {
                     buttonLabel(text: "00")
                 }
@@ -56,6 +59,7 @@ struct PriceField<L: View>: View {
                     }
                     Button {
                         value = 0
+                        hapic.impactOccurred()
                     } label: {
                         buttonLabel(text: "归零")
                     }
@@ -91,6 +95,7 @@ struct PriceField<L: View>: View {
             } else {
                 value = 10 * value - val
             }
+            hapic.impactOccurred()
         } label: {
             buttonLabel(text: "\(val)")
         }

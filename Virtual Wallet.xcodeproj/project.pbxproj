@@ -22,11 +22,9 @@
 		A193D8D82871B90C001FE760 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D72871B90C001FE760 /* Transaction.swift */; };
 		A193D8DA2871C143001FE760 /* TransactionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D92871C143001FE760 /* TransactionEditorView.swift */; };
 		A193D8DC2871C3D3001FE760 /* PriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8DB2871C3D3001FE760 /* PriceField.swift */; };
-		A196C1A52882DC0400948C14 /* NewTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A196C1A42882DC0400948C14 /* NewTransactionView.swift */; };
 		A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A1A9BD28732E120009E827 /* CurrencyText.swift */; };
 		A1ADEAB828771DAF0098FB9E /* AddTransactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADEAB728771DAF0098FB9E /* AddTransactionButton.swift */; };
 		A1AFF25E2883CE220041FCB9 /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AFF25D2883CE220041FCB9 /* SectionTitle.swift */; };
-		A1AFF2602883D91C0041FCB9 /* HTextSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AFF25F2883D91C0041FCB9 /* HTextSuggestionView.swift */; };
 		A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29828718D56005885FE /* PrimaryWalletView.swift */; };
 		A1B1A29B28718FC2005885FE /* RegularWalletRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */; };
 		A1B1A29D287192E9005885FE /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29C287192E9005885FE /* WalletView.swift */; };
@@ -94,11 +92,9 @@
 		A193D8D72871B90C001FE760 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		A193D8D92871C143001FE760 /* TransactionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEditorView.swift; sourceTree = "<group>"; };
 		A193D8DB2871C3D3001FE760 /* PriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceField.swift; sourceTree = "<group>"; };
-		A196C1A42882DC0400948C14 /* NewTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionView.swift; sourceTree = "<group>"; };
 		A1A1A9BD28732E120009E827 /* CurrencyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyText.swift; sourceTree = SOURCE_ROOT; };
 		A1ADEAB728771DAF0098FB9E /* AddTransactionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionButton.swift; sourceTree = "<group>"; };
 		A1AFF25D2883CE220041FCB9 /* SectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitle.swift; sourceTree = "<group>"; };
-		A1AFF25F2883D91C0041FCB9 /* HTextSuggestionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTextSuggestionView.swift; sourceTree = "<group>"; };
 		A1B1A29828718D56005885FE /* PrimaryWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryWalletView.swift; sourceTree = "<group>"; };
 		A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularWalletRow.swift; sourceTree = "<group>"; };
 		A1B1A29C287192E9005885FE /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WalletView.swift; path = "Virtual Wallet/WalletView.swift"; sourceTree = SOURCE_ROOT; };
@@ -187,7 +183,6 @@
 				A1A1A9BD28732E120009E827 /* CurrencyText.swift */,
 				A1B1A29C287192E9005885FE /* WalletView.swift */,
 				A193D8D92871C143001FE760 /* TransactionEditorView.swift */,
-				A196C1A42882DC0400948C14 /* NewTransactionView.swift */,
 				A1E41FA4288C34E40015FF32 /* NewTransactionWizard.swift */,
 				A1AFF25D2883CE220041FCB9 /* SectionTitle.swift */,
 				A193D8DB2871C3D3001FE760 /* PriceField.swift */,
@@ -196,7 +191,6 @@
 				A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */,
 				A1F39AF8287171C6005F58DF /* Home.swift */,
 				A1311A9328791469008A89A9 /* SearchSuggestionTextField.swift */,
-				A1AFF25F2883D91C0041FCB9 /* HTextSuggestionView.swift */,
 				A175328D287976B100036022 /* FlowHStack.swift */,
 			);
 			path = Views;
@@ -443,13 +437,11 @@
 				A193D8D82871B90C001FE760 /* Transaction.swift in Sources */,
 				A1B1A29B28718FC2005885FE /* RegularWalletRow.swift in Sources */,
 				A1892878287175E6006414D3 /* VirtualWalletDocument.swift in Sources */,
-				A1AFF2602883D91C0041FCB9 /* HTextSuggestionView.swift in Sources */,
 				A193D8DC2871C3D3001FE760 /* PriceField.swift in Sources */,
 				A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */,
 				A1E41FA5288C34F90015FF32 /* NewTransactionWizard.swift in Sources */,
 				A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */,
 				A1F39AF9287171C6005F58DF /* Home.swift in Sources */,
-				A196C1A52882DC0400948C14 /* NewTransactionView.swift in Sources */,
 				A175328E287976B100036022 /* FlowHStack.swift in Sources */,
 				A1AFF25E2883CE220041FCB9 /* SectionTitle.swift in Sources */,
 				A1B1A29D287192E9005885FE /* WalletView.swift in Sources */,
@@ -607,6 +599,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -659,6 +652,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;

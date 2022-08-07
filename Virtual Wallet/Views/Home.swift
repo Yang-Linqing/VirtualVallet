@@ -93,9 +93,6 @@ struct Home: View {
                 }
             }
         }
-        .toolbar {
-            
-        }
     }
 }
 
