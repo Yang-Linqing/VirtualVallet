@@ -43,7 +43,7 @@ struct SearchSuggestionTextField: View {
                         }
                     }
             }
-            AnyLayout(FlowHStack()) {
+            FlowHStack {
                 ForEach(suggestions, id: \.self) { suggest in
                     if suggest != "" {
                         if text == suggest {

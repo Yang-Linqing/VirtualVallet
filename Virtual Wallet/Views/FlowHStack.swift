@@ -67,14 +67,14 @@ struct FlowHStack: Layout {
         var first = true
         var lineHeight = CGFloat.zero
         subviews.forEach { subview in
-            let dimension = subview.dimensions(in: .unspecified)
+            let dimension = subview.sizeThatFits(.unspecified)
             if first {
                 first = false
                 subview.place(at: point, proposal: .unspecified)
                 point.x += dimension.width
                 lineHeight = max(lineHeight, dimension.height)
             } else {
-                if (bounds.width - point.x) < (dimension.width + hSpacing) {
+                if (bounds.origin.x + bounds.width - point.x) < (dimension.width + hSpacing) {
                     // 换行
                     point.y += lineHeight
                     point.y += vSpacing
