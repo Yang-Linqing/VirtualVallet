@@ -33,9 +33,6 @@
 		A1F39AF9287171C6005F58DF /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F39AF8287171C6005F58DF /* Home.swift */; };
 		A1F39AFB287171C9005F58DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1F39AFA287171C9005F58DF /* Assets.xcassets */; };
 		A1F39B00287171C9005F58DF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1F39AFF287171C9005F58DF /* Preview Assets.xcassets */; };
-		A1F39B0A287171C9005F58DF /* Virtual_WalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F39B09287171C9005F58DF /* Virtual_WalletTests.swift */; };
-		A1F39B14287171C9005F58DF /* Virtual_WalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F39B13287171C9005F58DF /* Virtual_WalletUITests.swift */; };
-		A1F39B16287171C9005F58DF /* Virtual_WalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F39B15287171C9005F58DF /* Virtual_WalletUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,20 +42,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A1753292287A6C6A00036022;
 			remoteInfo = WidgetExtension;
-		};
-		A1F39B06287171C9005F58DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1F39AE9287171C6005F58DF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F39AF0287171C6005F58DF;
-			remoteInfo = "Virtual Wallet";
-		};
-		A1F39B10287171C9005F58DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1F39AE9287171C6005F58DF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1F39AF0287171C6005F58DF;
-			remoteInfo = "Virtual Wallet";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -106,11 +89,6 @@
 		A1F39AFC287171C9005F58DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1F39AFD287171C9005F58DF /* Virtual_Wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Virtual_Wallet.entitlements; sourceTree = "<group>"; };
 		A1F39AFF287171C9005F58DF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A1F39B05287171C9005F58DF /* Virtual WalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Virtual WalletTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1F39B09287171C9005F58DF /* Virtual_WalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Virtual_WalletTests.swift; sourceTree = "<group>"; };
-		A1F39B0F287171C9005F58DF /* Virtual WalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Virtual WalletUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1F39B13287171C9005F58DF /* Virtual_WalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Virtual_WalletUITests.swift; sourceTree = "<group>"; };
-		A1F39B15287171C9005F58DF /* Virtual_WalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Virtual_WalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,20 +102,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A1F39AEE287171C6005F58DF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1F39B02287171C9005F58DF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1F39B0C287171C9005F58DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -201,8 +165,6 @@
 			children = (
 				A17532AA287A9C9A00036022 /* WidgetExtension.entitlements */,
 				A1F39AF3287171C6005F58DF /* Virtual Wallet */,
-				A1F39B08287171C9005F58DF /* Virtual WalletTests */,
-				A1F39B12287171C9005F58DF /* Virtual WalletUITests */,
 				A1753299287A6C6A00036022 /* Widget */,
 				A1753294287A6C6A00036022 /* Frameworks */,
 				A1F39AF2287171C6005F58DF /* Products */,
@@ -213,8 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				A1F39AF1287171C6005F58DF /* Virtual Wallet.app */,
-				A1F39B05287171C9005F58DF /* Virtual WalletTests.xctest */,
-				A1F39B0F287171C9005F58DF /* Virtual WalletUITests.xctest */,
 				A1753293287A6C6A00036022 /* WidgetExtension.appex */,
 			);
 			name = Products;
@@ -240,23 +200,6 @@
 				A1F39AFF287171C9005F58DF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		A1F39B08287171C9005F58DF /* Virtual WalletTests */ = {
-			isa = PBXGroup;
-			children = (
-				A1F39B09287171C9005F58DF /* Virtual_WalletTests.swift */,
-			);
-			path = "Virtual WalletTests";
-			sourceTree = "<group>";
-		};
-		A1F39B12287171C9005F58DF /* Virtual WalletUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A1F39B13287171C9005F58DF /* Virtual_WalletUITests.swift */,
-				A1F39B15287171C9005F58DF /* Virtual_WalletUITestsLaunchTests.swift */,
-			);
-			path = "Virtual WalletUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,42 +241,6 @@
 			productReference = A1F39AF1287171C6005F58DF /* Virtual Wallet.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A1F39B04287171C9005F58DF /* Virtual WalletTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1F39B1C287171C9005F58DF /* Build configuration list for PBXNativeTarget "Virtual WalletTests" */;
-			buildPhases = (
-				A1F39B01287171C9005F58DF /* Sources */,
-				A1F39B02287171C9005F58DF /* Frameworks */,
-				A1F39B03287171C9005F58DF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A1F39B07287171C9005F58DF /* PBXTargetDependency */,
-			);
-			name = "Virtual WalletTests";
-			productName = "Virtual WalletTests";
-			productReference = A1F39B05287171C9005F58DF /* Virtual WalletTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		A1F39B0E287171C9005F58DF /* Virtual WalletUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1F39B1F287171C9005F58DF /* Build configuration list for PBXNativeTarget "Virtual WalletUITests" */;
-			buildPhases = (
-				A1F39B0B287171C9005F58DF /* Sources */,
-				A1F39B0C287171C9005F58DF /* Frameworks */,
-				A1F39B0D287171C9005F58DF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A1F39B11287171C9005F58DF /* PBXTargetDependency */,
-			);
-			name = "Virtual WalletUITests";
-			productName = "Virtual WalletUITests";
-			productReference = A1F39B0F287171C9005F58DF /* Virtual WalletUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -349,14 +256,6 @@
 					};
 					A1F39AF0287171C6005F58DF = {
 						CreatedOnToolsVersion = 14.0;
-					};
-					A1F39B04287171C9005F58DF = {
-						CreatedOnToolsVersion = 14.0;
-						TestTargetID = A1F39AF0287171C6005F58DF;
-					};
-					A1F39B0E287171C9005F58DF = {
-						CreatedOnToolsVersion = 14.0;
-						TestTargetID = A1F39AF0287171C6005F58DF;
 					};
 				};
 			};
@@ -374,8 +273,6 @@
 			projectRoot = "";
 			targets = (
 				A1F39AF0287171C6005F58DF /* Virtual Wallet */,
-				A1F39B04287171C9005F58DF /* Virtual WalletTests */,
-				A1F39B0E287171C9005F58DF /* Virtual WalletUITests */,
 				A1753292287A6C6A00036022 /* WidgetExtension */,
 			);
 		};
@@ -396,20 +293,6 @@
 			files = (
 				A1F39B00287171C9005F58DF /* Preview Assets.xcassets in Resources */,
 				A1F39AFB287171C9005F58DF /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1F39B03287171C9005F58DF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1F39B0D287171C9005F58DF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,23 +333,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A1F39B01287171C9005F58DF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A1F39B0A287171C9005F58DF /* Virtual_WalletTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1F39B0B287171C9005F58DF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A1F39B14287171C9005F58DF /* Virtual_WalletUITests.swift in Sources */,
-				A1F39B16287171C9005F58DF /* Virtual_WalletUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -474,16 +340,6 @@
 			isa = PBXTargetDependency;
 			target = A1753292287A6C6A00036022 /* WidgetExtension */;
 			targetProxy = A175329F287A6C6C00036022 /* PBXContainerItemProxy */;
-		};
-		A1F39B07287171C9005F58DF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F39AF0287171C6005F58DF /* Virtual Wallet */;
-			targetProxy = A1F39B06287171C9005F58DF /* PBXContainerItemProxy */;
-		};
-		A1F39B11287171C9005F58DF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1F39AF0287171C6005F58DF /* Virtual Wallet */;
-			targetProxy = A1F39B10287171C9005F58DF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -508,7 +364,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cool.linkin.Virtual-Wallet.Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.ylq-dev.Virtual-Wallet.Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -538,7 +394,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cool.linkin.Virtual-Wallet.Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.ylq-dev.Virtual-Wallet.Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -684,8 +540,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cool.linkin.Virtual-Wallet";
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.ylq-dev.Virtual-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -719,100 +575,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cool.linkin.Virtual-Wallet";
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.ylq-dev.Virtual-Wallet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		A1F39B1D287171C9005F58DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cool.linkin.Virtual-WalletTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Virtual Wallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Virtual Wallet";
-			};
-			name = Debug;
-		};
-		A1F39B1E287171C9005F58DF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cool.linkin.Virtual-WalletTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Virtual Wallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Virtual Wallet";
-			};
-			name = Release;
-		};
-		A1F39B20287171C9005F58DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cool.linkin.Virtual-WalletUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Virtual Wallet";
-			};
-			name = Debug;
-		};
-		A1F39B21287171C9005F58DF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cool.linkin.Virtual-WalletUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Virtual Wallet";
 			};
 			name = Release;
 		};
@@ -842,24 +612,6 @@
 			buildConfigurations = (
 				A1F39B1A287171C9005F58DF /* Debug */,
 				A1F39B1B287171C9005F58DF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A1F39B1C287171C9005F58DF /* Build configuration list for PBXNativeTarget "Virtual WalletTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1F39B1D287171C9005F58DF /* Debug */,
-				A1F39B1E287171C9005F58DF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A1F39B1F287171C9005F58DF /* Build configuration list for PBXNativeTarget "Virtual WalletUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1F39B20287171C9005F58DF /* Debug */,
-				A1F39B21287171C9005F58DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.cool.linkin.Virtual-Wallet</string>
+		<string>group.cn.ylq-dev.Virtual-Wallet</string>
 	</array>
 </dict>
 </plist>
