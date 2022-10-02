@@ -87,8 +87,9 @@ struct WalletView: View {
         let index = wallet.transactions.firstIndex { transaction in
             selection.contains(transaction.id)
         } ?? wallet.transactions.startIndex
+        let newDate = wallet.transactions[index].date
         deleteSelected()
-        wallet.transactions.insert(Transaction(total: newTotal, type: "压缩"), at: index)
+        wallet.transactions.insert(Transaction(date: newDate, total: newTotal, type: "压缩"), at: index)
     }
 }
 
