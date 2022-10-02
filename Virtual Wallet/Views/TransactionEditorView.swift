@@ -50,14 +50,13 @@ fileprivate let dateFormatter: DateFormatter = {
 
 struct TransactionRow: View {
     @Binding var transaction: Transaction
+    @Environment(\.editMode) private var editMode
     var suggestions: [String] = []
     
     @State private var isPresented = false
     
     var body: some View {
-        Button {
-            isPresented = true
-        } label: {
+        if editMode?.wrappedValue.isEditing == true {
             VStack(alignment: .leading) {
                 Text("\(transaction.date, formatter: dateFormatter)")
                     .font(.caption)
@@ -69,10 +68,26 @@ struct TransactionRow: View {
                     CurrencyText(transaction.total)
                 }
             }
-            .foregroundColor(.primary)
-        }
-        .sheet(isPresented: $isPresented) {
-            TransactionEditorView(transaction: $transaction, suggestions: suggestions)
+        } else {
+            Button {
+                isPresented = true
+            } label: {
+                VStack(alignment: .leading) {
+                    Text("\(transaction.date, formatter: dateFormatter)")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(.secondary)
+                    HStack {
+                        Text(transaction.type)
+                        Spacer()
+                        CurrencyText(transaction.total)
+                    }
+                }
+                .foregroundColor(.primary)
+            }
+            .sheet(isPresented: $isPresented) {
+                TransactionEditorView(transaction: $transaction, suggestions: suggestions)
+            }
         }
     }
 }

@@ -9,28 +9,86 @@ import SwiftUI
 
 struct WalletView: View {
     @Binding var wallet: Wallet
+    @State private var selection = Set<UUID>()
+    @Environment(\.editMode) private var editMode
     
     var body: some View {
-        List {
-            ForEach($wallet.transactions) { transaction in
-                TransactionRow(transaction: transaction, suggestions: wallet.transactionTypeSuggestions)
-            }
-            .onMove { indexSet, newLocation in
-                wallet.transactions.move(fromOffsets: indexSet, toOffset: newLocation)
-            }
-            .onDelete { indexSet in
-                wallet.transactions.remove(atOffsets: indexSet)
-            }
+        List($wallet.transactions, editActions: [.all], selection: $selection) { transaction in
+            TransactionRow(transaction: transaction, suggestions: wallet.transactionTypeSuggestions)
         }
         .navigationTitle($wallet.name)
         .toolbar {
-            CurrencyText(wallet.balance)
-            Button {
-                wallet.transactions.insert(Transaction(date: Date(), total: 0, type: ""), at: 0)
-            } label: {
-                Label("添加交易", systemImage: "plus")
+            if editMode?.wrappedValue.isEditing == true {
+                Button("完成") {
+                    withAnimation {
+                        editMode?.wrappedValue = .inactive
+                    }
+                }
+                Menu {
+                    Button(role: .destructive) {
+                        withAnimation {
+                            deleteSelected()
+                        }
+                    } label: {
+                        Label("删除", systemImage: "xmark.bin")
+                    }
+                    .disabled(selection.isEmpty)
+                    Button {
+                        withAnimation {
+                            squashSelected()
+                        }
+                    } label: {
+                        Label("压缩", systemImage: "archivebox")
+                    }
+                    .disabled(selection.isEmpty)
+                } label: {
+                    CurrencyText(selectedTotal)
+                }
+            } else {
+                Button {
+                    withAnimation {
+                        editMode?.wrappedValue = .active
+                    }
+                } label: {
+                    Label("选择", systemImage: "checkmark.circle")
+                }
+                Button {
+                    wallet.transactions.insert(Transaction(date: Date(), total: 0, type: ""), at: 0)
+                } label: {
+                    Label("添加交易", systemImage: "plus")
+                }
+                CurrencyText(wallet.balance)
             }
         }
+    }
+    
+    var selectedTotal: Int {
+        wallet.transactions.reduce(0) { partialResult, transaction in
+            if selection.contains(transaction.id) {
+                return partialResult + transaction.total
+            } else {
+                return partialResult
+            }
+        }
+    }
+    
+    func deleteSelected() {
+        var indexSet = IndexSet()
+        for (i, transaction) in wallet.transactions.enumerated() {
+            if selection.contains(transaction.id) {
+                indexSet.insert(i)
+            }
+        }
+        wallet.transactions.remove(atOffsets: indexSet)
+    }
+    
+    func squashSelected() {
+        let newTotal = selectedTotal
+        let index = wallet.transactions.firstIndex { transaction in
+            selection.contains(transaction.id)
+        } ?? wallet.transactions.startIndex
+        deleteSelected()
+        wallet.transactions.insert(Transaction(total: newTotal, type: "压缩"), at: index)
     }
 }
 
