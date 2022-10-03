@@ -24,26 +24,25 @@ struct WalletView: View {
                         editMode?.wrappedValue = .inactive
                     }
                 }
-                Menu {
-                    Button(role: .destructive) {
-                        withAnimation {
-                            deleteSelected()
-                        }
-                    } label: {
-                        Label("删除", systemImage: "xmark.bin")
+                CurrencyText(selectedTotal)
+                Button(role: .destructive) {
+                    withAnimation {
+                        deleteSelected()
                     }
-                    .disabled(selection.isEmpty)
-                    Button {
-                        withAnimation {
-                            squashSelected()
-                        }
-                    } label: {
-                        Label("压缩", systemImage: "archivebox")
-                    }
-                    .disabled(selection.isEmpty)
                 } label: {
-                    CurrencyText(selectedTotal)
+                    Label("删除", systemImage: "xmark.bin")
+                        .labelStyle(.titleAndIcon)
                 }
+                .disabled(selection.isEmpty)
+                Button {
+                    withAnimation {
+                        squashSelected()
+                    }
+                } label: {
+                    Label("压缩", systemImage: "archivebox")
+                        .labelStyle(.titleAndIcon)
+                }
+                .disabled(selection.isEmpty)
             } else {
                 Button {
                     withAnimation {
