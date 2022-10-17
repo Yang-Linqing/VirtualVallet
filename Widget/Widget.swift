@@ -50,16 +50,21 @@ struct WidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        Gauge(value: Double(entry.primary.balance), in: 0...6000) {
-            Text(entry.primary.name)
-        } currentValueLabel: {
-            CurrencyText(entry.primary.balance)
-        } minimumValueLabel: {
-            Text("0")
-        } maximumValueLabel: {
-            Text("60")
+        ZStack {
+            AccessoryWidgetBackground()
+            VStack {
+                Text(entry.primary.name)
+                    .lineLimit(1)
+                    .font(.caption)
+                    .minimumScaleFactor(0.3)
+                CurrencyText(entry.primary.balance)
+                    .lineLimit(1)
+                    .font(.title)
+                    .minimumScaleFactor(0.5)
+                Image(systemName: "creditcard.fill")
+            }
+            .padding(4.0)
         }
-        .gaugeStyle(.accessoryCircular)
     }
 }
 
