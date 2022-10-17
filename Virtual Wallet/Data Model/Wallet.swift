@@ -61,5 +61,34 @@ struct Wallet: Codable, Identifiable, Hashable {
         }
         return result
     }
+    
+    mutating func deleteTransactions(_ selection: Set<UUID>) {
+        transactions.removeAll { transaction in
+            selection.contains(transaction.id)
+        }
+    }
+    
+    mutating func squashTransactions(_ selection: Set<UUID>) {
+        var newTotal = 0
+        var newDate = Date()
+        var newType = "压缩"
+        var types = Set<String>()
+        var index: Int!
+        for (i, transaction) in transactions.enumerated() {
+            if selection.contains(transaction.id) {
+                if index == nil {
+                    index = i
+                    newDate = transaction.date
+                }
+                newTotal += transaction.total
+                types.insert(transaction.type)
+            }
+        }
+        if types.count == 1 {
+            newType = types.first!
+        }
+        deleteTransactions(selection)
+        transactions.insert(Transaction(date: newDate, total: newTotal, type: newType), at: index)
+    }
 }
 

@@ -72,23 +72,11 @@ struct WalletView: View {
     }
     
     func deleteSelected() {
-        var indexSet = IndexSet()
-        for (i, transaction) in wallet.transactions.enumerated() {
-            if selection.contains(transaction.id) {
-                indexSet.insert(i)
-            }
-        }
-        wallet.transactions.remove(atOffsets: indexSet)
+        wallet.deleteTransactions(selection)
     }
     
     func squashSelected() {
-        let newTotal = selectedTotal
-        let index = wallet.transactions.firstIndex { transaction in
-            selection.contains(transaction.id)
-        } ?? wallet.transactions.startIndex
-        let newDate = wallet.transactions[index].date
-        deleteSelected()
-        wallet.transactions.insert(Transaction(date: newDate, total: newTotal, type: "压缩"), at: index)
+        wallet.squashTransactions(selection)
     }
 }
 
