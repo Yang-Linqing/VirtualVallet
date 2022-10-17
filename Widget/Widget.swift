@@ -16,8 +16,8 @@ struct Provider: TimelineProvider {
     func getSnapshot(in context: Context, completion: @escaping (WalletBalanceEntry) -> ()) {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        if let userDefaults = UserDefaults(suiteName: "group.cool.linkin.Virtual-Wallet"),
-           let entryJSON = userDefaults.string(forKey: "cool.linkin.Virtual-Wallet.Widget.WalletBalance"),
+        if let userDefaults = UserDefaults(suiteName: "group.cn.ylq-dev.Virtual-Wallet"),
+           let entryJSON = userDefaults.string(forKey: "cn.ylq-dev.Virtual-Wallet.Widget.WalletBalance"),
            let entry = try? decoder.decode(WalletBalanceEntry.self, from: entryJSON.data(using: .utf8)!)
         {
             completion(entry)
@@ -31,8 +31,8 @@ struct Provider: TimelineProvider {
         var entries: [WalletBalanceEntry] = []
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        if let userDefaults = UserDefaults(suiteName: "group.cool.linkin.Virtual-Wallet"),
-           let entryJSON = userDefaults.string(forKey: "cool.linkin.Virtual-Wallet.Widget.WalletBalance"),
+        if let userDefaults = UserDefaults(suiteName: "group.cn.ylq-dev.Virtual-Wallet"),
+           let entryJSON = userDefaults.string(forKey: "cn.ylq-dev.Virtual-Wallet.Widget.WalletBalance"),
            let entry = try? decoder.decode(WalletBalanceEntry.self, from: entryJSON.data(using: .utf8)!)
         {
             entries = [entry]
@@ -53,7 +53,7 @@ struct WidgetEntryView : View {
         Gauge(value: Double(entry.primary.balance), in: 0...6000) {
             Text(entry.primary.name)
         } currentValueLabel: {
-            CurrencyText(2500)
+            CurrencyText(entry.primary.balance)
         } minimumValueLabel: {
             Text("0")
         } maximumValueLabel: {
@@ -65,7 +65,7 @@ struct WidgetEntryView : View {
 
 @main
 struct WalletBalanceWidget: Widget {
-    let kind: String = "cool.linkin.Virtual-Wallet.Widget.WalletBalance"
+    let kind: String = "cn.ylq-dev.Virtual-Wallet.Widget.WalletBalance"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in

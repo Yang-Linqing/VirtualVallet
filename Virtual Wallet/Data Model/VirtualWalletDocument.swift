@@ -63,9 +63,9 @@ struct VirtualWalletDocument: FileDocument, Codable {
             })
         )
         let entryData = try encoder.encode(entry)
-        if let userDefaults = UserDefaults(suiteName: "group.cool.linkin.Virtual-Wallet") {
-            userDefaults.set(String(data: entryData, encoding: .utf8), forKey: "cool.linkin.Virtual-Wallet.Widget.WalletBalance")
-            WidgetCenter.shared.reloadTimelines(ofKind: "cool.linkin.Virtual-Wallet.Widget.WalletBalance")
+        if let userDefaults = UserDefaults(suiteName: "group.cn.ylq-dev.Virtual-Wallet") {
+            userDefaults.set(String(data: entryData, encoding: .utf8), forKey: "cn.ylq-dev.Virtual-Wallet.Widget.WalletBalance")
+            WidgetCenter.shared.reloadTimelines(ofKind: "cn.ylq-dev.Virtual-Wallet.Widget.WalletBalance")
             logger.log("小组件更新: 完成。")
         } else {
             logger.log(level: .error, "小组件更新: 无法访问 App 与小组件的共享配置。")
