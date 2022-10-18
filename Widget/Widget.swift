@@ -61,6 +61,7 @@ struct WidgetEntryView : View {
                     .lineLimit(1)
                     .font(.title)
                     .minimumScaleFactor(0.5)
+                    .privacySensitive()
                 Image(systemName: "creditcard.fill")
             }
             .padding(4.0)

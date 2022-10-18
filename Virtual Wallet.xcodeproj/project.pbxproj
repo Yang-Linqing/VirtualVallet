@@ -125,6 +125,7 @@
 			children = (
 				A175329A287A6C6A00036022 /* Widget.swift */,
 				A17532A6287A71C300036022 /* WidgetDataModel.swift */,
+				A17532AA287A9C9A00036022 /* WidgetExtension.entitlements */,
 				A175329C287A6C6C00036022 /* Assets.xcassets */,
 				A175329E287A6C6C00036022 /* Info.plist */,
 			);
@@ -163,7 +164,6 @@
 		A1F39AE8287171C6005F58DF = {
 			isa = PBXGroup;
 			children = (
-				A17532AA287A9C9A00036022 /* WidgetExtension.entitlements */,
 				A1F39AF3287171C6005F58DF /* Virtual Wallet */,
 				A1753299287A6C6A00036022 /* Widget */,
 				A1753294287A6C6A00036022 /* Frameworks */,
@@ -349,7 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = WidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widget/WidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M5D9G326RB;
@@ -379,7 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = WidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widget/WidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M5D9G326RB;
