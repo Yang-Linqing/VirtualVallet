@@ -51,52 +51,14 @@ struct NewTransactionSheet: View {
     }
     
     // MARK: 选择钱包
-    @ViewBuilder func selectWalletView() -> some View {
-        Text("无").tag(nil as Wallet?)
-        Section {
-            Text(document.primaryWallet.name).tag(document.primaryWallet as Wallet?)
-        }
-        Section {
-            ForEach(document.secondaryWallet) { wallet in
-                Text(wallet.name).tag(wallet as Wallet?)
-            }
-        }
-        Section {
-            ForEach(document.otherWallet) { wallet in
-                Text(wallet.name).tag(wallet as Wallet?)
-            }
-        }
-    }
-    
     @ViewBuilder func accountSection() -> some View {
         Section {
             HStack {
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .foregroundColor(Color(uiColor: .secondarySystemGroupedBackground))
-                    Picker(selection: $incomingWallet) {
-                        selectWalletView()
-                    } label: {
-                        Text("付款钱包")
-                    }
-                    .padding(.horizontal, 8.0)
-                }
+                WalletPicker(selection: $incomingWallet)
                 Image(systemName: "arrow.right")
                     .imageScale(.large)
-                ZStack(alignment: .trailing) {
-                    RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .foregroundColor(Color(uiColor: .secondarySystemGroupedBackground))
-                    Picker(selection: $targetWallet) {
-                        selectWalletView()
-                    } label: {
-                        Text("收款钱包")
-                    }
-                    .padding(.horizontal, 8.0)
-                }
+                WalletPicker(selection: $targetWallet)
             }
-            .pickerStyle(.menu)
-            .labelsHidden()
-            .buttonStyle(.borderless)
             .listRowInsets(EdgeInsets())
             .listRowBackground(Color.clear)
         } header: {
@@ -195,4 +157,58 @@ struct NewTransactionSheet_Previews: PreviewProvider {
         NewTransactionSheet()
             .document($document)
     }
+}
+
+struct WalletPicker: View {
+    // MARK: Environment Variables
+    @Environment(\.document) private var documentBinding
+    private var document: VirtualWalletDocument {
+        get { documentBinding.wrappedValue }
+        set { documentBinding.wrappedValue = newValue }
+    }
+    
+    @Binding var selection: Wallet?
+    
+    var body: some View {
+        Menu {
+            Button("无") {
+                selection = nil
+            }
+            Section {
+                Button(document.primaryWallet.name) {
+                    selection = document.primaryWallet
+                }
+            }
+            Section {
+                ForEach(document.secondaryWallet) { wallet in
+                    Button(wallet.name) {
+                        selection = wallet
+                    }
+                }
+            }
+            Section {
+                ForEach(document.otherWallet) { wallet in
+                    Button(wallet.name) {
+                        selection = wallet
+                    }
+                }
+            }
+        } label: {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .foregroundColor(Color(uiColor: .secondarySystemGroupedBackground))
+                HStack {
+                    Text(selection?.name ?? "无")
+                    Spacer()
+                    Divider()
+                    Image(systemName: "chevron.down")
+                        .foregroundStyle(.secondary)
+                }
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 8))
+            }
+            .tint(Color.primary)
+        }
+
+    }
+    
 }
