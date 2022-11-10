@@ -40,7 +40,7 @@ struct Home: View {
                     .buttonStyle(.borderedProminent)
                     .tint(Color.primary)
                     .sheet(isPresented: $showTransferView) {
-                        NewTransactionWizard()
+                        NewTransactionSheet()
                             .document($document)
                     }
                 }

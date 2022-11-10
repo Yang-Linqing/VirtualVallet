@@ -7,12 +7,7 @@
 
 import SwiftUI
 
-// MARK: 导航标记
-fileprivate struct NaviPageTypeSetDirection: Codable, Hashable {
-    var id = UUID()
-}
-
-struct NewTransactionWizard: View {
+struct NewTransactionSheet: View {
     // MARK: Environment Variables
     @Environment(\.document) private var documentBinding
     private var document: VirtualWalletDocument {
@@ -29,15 +24,33 @@ struct NewTransactionWizard: View {
     @State private var total = 0
     
     var body: some View {
-        NavigationView {
-            firstPage_SetDirection()
+        Form {
+            accountSection()
+                .onAppear {
+                    incomingWallet = document.primaryWallet
+                }
+            setTypeSection()
+            setTotalSection()
         }
-        .onAppear {
-            incomingWallet = document.primaryWallet
-        }
+        .safeAreaInset(edge: .bottom, content: {
+            Button {
+                saveTransfer()
+            } label: {
+                Text("记账")
+                    .frame(maxWidth: .infinity)
+                    .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+            }
+            .buttonStyle(.borderedProminent)
+            .padding()
+            .background {
+                Rectangle()
+                    .fill(.bar)
+                    .ignoresSafeArea()
+            }
+        })
     }
     
-    // MARK: 第一页 选择钱包和时间
+    // MARK: 选择钱包
     @ViewBuilder func selectWalletView() -> some View {
         Text("无").tag(nil as Wallet?)
         Section {
@@ -55,91 +68,85 @@ struct NewTransactionWizard: View {
         }
     }
     
-    @ViewBuilder func firstPage_SetDirection() -> some View {
-        Form {
-            Section {
-                Picker(selection: $incomingWallet) {
-                    selectWalletView()
-                } label: {
-                    Text("付款钱包")
+    @ViewBuilder func accountSection() -> some View {
+        Section {
+            HStack {
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        .foregroundColor(Color(uiColor: .secondarySystemGroupedBackground))
+                    Picker(selection: $incomingWallet) {
+                        selectWalletView()
+                    } label: {
+                        Text("付款钱包")
+                    }
+                    .padding(.horizontal, 8.0)
                 }
-                Picker(selection: $targetWallet) {
-                    selectWalletView()
-                } label: {
-                    Text("收款钱包")
+                Image(systemName: "arrow.right")
+                    .imageScale(.large)
+                ZStack(alignment: .trailing) {
+                    RoundedRectangle(cornerRadius: 8, style: .continuous)
+                        .foregroundColor(Color(uiColor: .secondarySystemGroupedBackground))
+                    Picker(selection: $targetWallet) {
+                        selectWalletView()
+                    } label: {
+                        Text("收款钱包")
+                    }
+                    .padding(.horizontal, 8.0)
                 }
-            } footer: {
-                Text("要从钱包之间转账，请同时选择付款钱包和收款钱包。")
             }
-            DatePicker(selection: $date, label: { Text("时间") })
-        }
-        .safeAreaInset(edge: .bottom) {
-            VStack {
-                Button {
+            .pickerStyle(.menu)
+            .labelsHidden()
+            .buttonStyle(.borderless)
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
+        } header: {
+            HStack {
+                SectionTitle("账户")
+                Spacer()
+                Button("交换") {
                     let temp = incomingWallet
                     incomingWallet = targetWallet
                     targetWallet = temp
-                } label: {
-                    Text("交换钱包")
-                        .frame(maxWidth: .infinity)
-                        .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 }
-                .buttonStyle(.bordered)
-                NavigationLink {
-                    secondPage_SetType()
-                } label: {
-                    Text("下一步")
-                        .frame(maxWidth: .infinity)
-                        .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                }
-                .buttonStyle(.borderedProminent)
             }
-            .padding(.horizontal)
+            .padding(.top)
         }
-        .navigationTitle("记账")
     }
     
-    // MARK: 第二页 选择类型
+    // MARK: 选择时间和类型
     private var suggestions: [String] {
         (incomingWallet?.transactionTypeSuggestions ?? []) + (targetWallet?.transactionTypeSuggestions ?? [])
     }
-    @ViewBuilder func secondPage_SetType() -> some View {
-        Form {
-            SearchSuggestionTextField(nil, text: $type, suggestions: suggestions)
-        }
-        .safeAreaInset(edge: .bottom, content: {
-            NavigationLink {
-                thirdPage_SetTotal()
+    @State private var presentTypeSuggestion = false
+    @ViewBuilder func setTypeSection() -> some View {
+        Section {
+            DatePicker(selection: $date, label: { Text("时间") })
+            Button {
+                presentTypeSuggestion = true
             } label: {
-                Text("下一步")
-                    .frame(maxWidth: .infinity)
-                    .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                HStack {
+                    Text("类型")
+                    Spacer()
+                    Text(type)
+                        .foregroundStyle(.secondary)
+                }
+                .tint(Color.primary)
+                .sheet(isPresented: $presentTypeSuggestion) {
+                    Form {
+                        SearchSuggestionTextField(nil, text: $type, suggestions: suggestions)
+                    }
+                }
             }
-            .buttonStyle(.borderedProminent)
-            .padding(.horizontal)
-        })
-        .navigationTitle("类别")
+        }
     }
     
     // MARK: 第三页 输入金额
-    @ViewBuilder func thirdPage_SetTotal() -> some View {
-        Form {
+    @ViewBuilder func setTotalSection() -> some View {
+        Section {
             PriceField(value: $total, positiveOnly: true) {
                 Text("总额")
             }
         }
-        .safeAreaInset(edge: .bottom, content: {
-            Button {
-                saveTransfer()
-            } label: {
-                Text("记录")
-                    .frame(maxWidth: .infinity)
-                    .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-            }
-            .buttonStyle(.borderedProminent)
-            .padding(.horizontal)
-        })
-        .navigationTitle("金额")
     }
     
     // MARK: 保存
@@ -181,11 +188,11 @@ struct NewTransactionWizard: View {
     }
 }
 
-struct NewTransactionWizard_Previews: PreviewProvider {
+struct NewTransactionSheet_Previews: PreviewProvider {
     @State private static var document = VirtualWalletDocument()
     
     static var previews: some View {
-        NewTransactionWizard()
+        NewTransactionSheet()
             .document($document)
     }
 }
