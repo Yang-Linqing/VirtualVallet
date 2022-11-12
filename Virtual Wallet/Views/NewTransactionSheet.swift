@@ -83,22 +83,7 @@ struct NewTransactionSheet: View {
     @ViewBuilder func setTypeSection() -> some View {
         Section {
             DatePicker(selection: $date, label: { Text("时间") })
-            Button {
-                presentTypeSuggestion = true
-            } label: {
-                HStack {
-                    Text("类型")
-                    Spacer()
-                    Text(type)
-                        .foregroundStyle(.secondary)
-                }
-                .tint(Color.primary)
-                .sheet(isPresented: $presentTypeSuggestion) {
-                    Form {
-                        SearchSuggestionTextField(nil, text: $type, suggestions: suggestions)
-                    }
-                }
-            }
+            SearchSuggestionTextField("类型", text: $type, suggestions: suggestions)
         }
     }
     

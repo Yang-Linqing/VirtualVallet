@@ -16,12 +16,15 @@ struct TransactionEditorView: View {
             Form {
                 Section {
                     DatePicker(selection: $transaction.date, label: { Text("时间") })
+                }
+                Section {
                     SearchSuggestionTextField("类别", text: $transaction.type, suggestions: suggestions)
+                }
+                Section {
                     PriceField(value: $transaction.total) {
                         Text("金额")
                     }
-                }
-                Section {
+                } footer: {
                     HStack {
                         Spacer()
                         VStack(spacing: 8.0) {
@@ -31,9 +34,8 @@ struct TransactionEditorView: View {
                         }
                         Spacer()
                     }
-                    .listRowBackground(Color.clear)
+                    .font(.body)
                 }
-                .foregroundStyle(.secondary)
             }
             .listStyle(.insetGrouped)
             .navigationTitle("编辑交易")
