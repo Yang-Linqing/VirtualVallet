@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MyViewLibrary
 
 struct TransactionEditorView: View {
     @Binding var transaction: Transaction

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MyViewLibrary
 
 struct NewTransactionSheet: View {
     // MARK: Environment Variables

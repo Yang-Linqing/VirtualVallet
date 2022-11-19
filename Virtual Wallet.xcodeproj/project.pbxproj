@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A1311A9428791469008A89A9 /* SearchSuggestionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1311A9328791469008A89A9 /* SearchSuggestionTextField.swift */; };
-		A175328E287976B100036022 /* FlowHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A175328D287976B100036022 /* FlowHStack.swift */; };
+		84FF86A42928C334001B788D /* MyViewLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 84FF86A32928C334001B788D /* MyViewLibrary */; };
 		A1753296287A6C6A00036022 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1753295287A6C6A00036022 /* WidgetKit.framework */; };
 		A1753298287A6C6A00036022 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1753297287A6C6A00036022 /* SwiftUI.framework */; };
 		A175329B287A6C6A00036022 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A175329A287A6C6A00036022 /* Widget.swift */; };
@@ -60,8 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A1311A9328791469008A89A9 /* SearchSuggestionTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSuggestionTextField.swift; sourceTree = "<group>"; };
-		A175328D287976B100036022 /* FlowHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowHStack.swift; sourceTree = "<group>"; };
+		84FF86A22928C300001B788D /* MyViewLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MyViewLibrary; path = ../MyViewLibrary; sourceTree = "<group>"; };
 		A1753293287A6C6A00036022 /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1753295287A6C6A00036022 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A1753297287A6C6A00036022 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -105,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FF86A42928C334001B788D /* MyViewLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +144,6 @@
 		A1B1A29528718D0F005885FE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A1A1A9BD28732E120009E827 /* CurrencyText.swift */,
 				A1B1A29C287192E9005885FE /* WalletView.swift */,
 				A193D8D92871C143001FE760 /* TransactionEditorView.swift */,
 				A1E41FA4288C34E40015FF32 /* NewTransactionSheet.swift */,
@@ -155,8 +153,6 @@
 				A1ADEAB728771DAF0098FB9E /* AddTransactionButton.swift */,
 				A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */,
 				A1F39AF8287171C6005F58DF /* Home.swift */,
-				A1311A9328791469008A89A9 /* SearchSuggestionTextField.swift */,
-				A175328D287976B100036022 /* FlowHStack.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +160,8 @@
 		A1F39AE8287171C6005F58DF = {
 			isa = PBXGroup;
 			children = (
+				84FF86A22928C300001B788D /* MyViewLibrary */,
+				A1A1A9BD28732E120009E827 /* CurrencyText.swift */,
 				A1F39AF3287171C6005F58DF /* Virtual Wallet */,
 				A1753299287A6C6A00036022 /* Widget */,
 				A1753294287A6C6A00036022 /* Frameworks */,
@@ -237,6 +235,9 @@
 				A17532A0287A6C6C00036022 /* PBXTargetDependency */,
 			);
 			name = "Virtual Wallet";
+			packageProductDependencies = (
+				84FF86A32928C334001B788D /* MyViewLibrary */,
+			);
 			productName = "Virtual Wallet";
 			productReference = A1F39AF1287171C6005F58DF /* Virtual Wallet.app */;
 			productType = "com.apple.product-type.application";
@@ -325,10 +326,8 @@
 				A1E41FA5288C34F90015FF32 /* NewTransactionSheet.swift in Sources */,
 				A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */,
 				A1F39AF9287171C6005F58DF /* Home.swift in Sources */,
-				A175328E287976B100036022 /* FlowHStack.swift in Sources */,
 				A1AFF25E2883CE220041FCB9 /* SectionTitle.swift in Sources */,
 				A1B1A29D287192E9005885FE /* WalletView.swift in Sources */,
-				A1311A9428791469008A89A9 /* SearchSuggestionTextField.swift in Sources */,
 				A17532A7287A71C300036022 /* WidgetDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,6 +620,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84FF86A32928C334001B788D /* MyViewLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MyViewLibrary;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1F39AE9287171C6005F58DF /* Project object */;
 }
