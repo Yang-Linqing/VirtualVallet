@@ -18,45 +18,63 @@ struct WalletView: View {
         }
         .navigationTitle($wallet.name)
         .toolbar {
-            if editMode?.wrappedValue.isEditing == true {
-                Button("完成") {
-                    withAnimation {
-                        editMode?.wrappedValue = .inactive
+            ToolbarItemGroup(placement: .bottomBar) {
+                if editMode?.wrappedValue.isEditing == true {
+                    Button(role: .destructive) {
+                        withAnimation {
+                            deleteSelected()
+                        }
+                    } label: {
+                        Label("删除", systemImage: "xmark.bin")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    .tint(.red)
+                    .disabled(selection.isEmpty)
+                    Button {
+                        withAnimation {
+                            squashSelected()
+                        }
+                    } label: {
+                        Label("压缩", systemImage: "archivebox")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    .disabled(selection.isEmpty)
+                } else {
+                    Button {
+                        withAnimation {
+                            wallet.transactions.insert(Transaction(date: Date(), total: 0, type: ""), at: 0)
+                        }
+                    } label: {
+                        Label("添加交易", systemImage: "plus.circle.fill")
+                            .labelStyle(.titleAndIcon)
                     }
                 }
-                CurrencyText(selectedTotal)
-                Button(role: .destructive) {
-                    withAnimation {
-                        deleteSelected()
+            }
+            ToolbarItemGroup(placement: .status) {
+                if editMode?.wrappedValue.isEditing == true {
+                    CurrencyText(selectedTotal)
+                } else {
+                    CurrencyText(wallet.balance)
+                }
+            }
+            ToolbarItemGroup {
+                if editMode?.wrappedValue.isEditing == true {
+                    Button("完成") {
+                        withAnimation {
+                            editMode?.wrappedValue = .inactive
+                        }
                     }
-                } label: {
-                    Label("删除", systemImage: "xmark.bin")
-                        .labelStyle(.titleAndIcon)
-                }
-                .disabled(selection.isEmpty)
-                Button {
-                    withAnimation {
-                        squashSelected()
+                } else {
+                    Button {
+                        withAnimation {
+                            editMode?.wrappedValue = .active
+                        }
+                    } label: {
+                        Label("选择", systemImage: "checkmark.circle")
+                            .labelStyle(.titleAndIcon)
                     }
-                } label: {
-                    Label("压缩", systemImage: "archivebox")
-                        .labelStyle(.titleAndIcon)
+                    
                 }
-                .disabled(selection.isEmpty)
-            } else {
-                Button {
-                    withAnimation {
-                        editMode?.wrappedValue = .active
-                    }
-                } label: {
-                    Label("选择", systemImage: "checkmark.circle")
-                }
-                Button {
-                    wallet.transactions.insert(Transaction(date: Date(), total: 0, type: ""), at: 0)
-                } label: {
-                    Label("添加交易", systemImage: "plus")
-                }
-                CurrencyText(wallet.balance)
             }
         }
     }
