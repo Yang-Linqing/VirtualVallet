@@ -13,34 +13,31 @@ struct TransactionEditorView: View {
     var suggestions: [String] = []
     
     var body: some View {
-        NavigationStack {
-            Form {
-                Section {
-                    DatePicker(selection: $transaction.date, label: { Text("时间") })
-                }
-                Section {
-                    SearchSuggestionTextField("类别", text: $transaction.type, suggestions: suggestions)
-                }
-                Section {
-                    PriceField(value: $transaction.total) {
-                        Text("金额")
-                    }
-                } footer: {
-                    HStack {
-                        Spacer()
-                        VStack(spacing: 8.0) {
-                            Text("下划保存并关闭")
-                            Image(systemName: "chevron.compact.down")
-                                .imageScale(.large)
-                        }
-                        Spacer()
-                    }
-                    .font(.body)
-                }
+        Form {
+            Section {
+                DatePicker(selection: $transaction.date, label: { Text("时间") })
             }
-            .listStyle(.insetGrouped)
-            .navigationTitle("编辑交易")
+            Section {
+                SearchSuggestionTextField("类别", text: $transaction.type, suggestions: suggestions)
+            }
+            Section {
+                PriceField(value: $transaction.total) {
+                    Text("金额")
+                }
+            } footer: {
+                HStack {
+                    Spacer()
+                    VStack(spacing: 8.0) {
+                        Text("下划保存并关闭")
+                        Image(systemName: "chevron.compact.down")
+                            .imageScale(.large)
+                    }
+                    Spacer()
+                }
+                .font(.body)
+            }
         }
+        .listStyle(.insetGrouped)
     }
 }
 
