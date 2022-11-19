@@ -27,9 +27,6 @@ struct NewTransactionSheet: View {
     var body: some View {
         Form {
             accountSection()
-                .onAppear {
-                    incomingWallet = document.primaryWallet
-                }
             setTypeSection()
             setTotalSection()
         }
@@ -49,6 +46,9 @@ struct NewTransactionSheet: View {
                     .ignoresSafeArea()
             }
         })
+        .onAppear {
+            incomingWallet = document.primaryWallet
+        }
     }
     
     // MARK: 选择钱包

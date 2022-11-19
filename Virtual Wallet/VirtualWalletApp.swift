@@ -14,7 +14,7 @@ struct VirtualWalletApp: App {
             NavigationSplitView(columnVisibility: .constant(.doubleColumn)) {
                 Home(document: file.$document)
                     .listStyle(.insetGrouped)
-                    .navigationTitle(file.fileURL?.lastPathComponent ?? "")
+                    .navigationTitle(file.fileURL?.deletingPathExtension().lastPathComponent ?? "")
             } detail: {
                 EmptyView()
             }
