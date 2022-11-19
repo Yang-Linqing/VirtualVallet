@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		84FF86A42928C334001B788D /* MyViewLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 84FF86A32928C334001B788D /* MyViewLibrary */; };
+		84FF86A62928D2E1001B788D /* MyViewLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 84FF86A52928D2E1001B788D /* MyViewLibrary */; };
 		A1753296287A6C6A00036022 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1753295287A6C6A00036022 /* WidgetKit.framework */; };
 		A1753298287A6C6A00036022 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1753297287A6C6A00036022 /* SwiftUI.framework */; };
 		A175329B287A6C6A00036022 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A175329A287A6C6A00036022 /* Widget.swift */; };
@@ -15,13 +16,10 @@
 		A17532A1287A6C6C00036022 /* WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A1753293287A6C6A00036022 /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A17532A7287A71C300036022 /* WidgetDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17532A6287A71C300036022 /* WidgetDataModel.swift */; };
 		A17532A8287A723400036022 /* WidgetDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17532A6287A71C300036022 /* WidgetDataModel.swift */; };
-		A17532A9287A757500036022 /* CurrencyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A1A9BD28732E120009E827 /* CurrencyText.swift */; };
 		A1892878287175E6006414D3 /* VirtualWalletDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1892877287175E6006414D3 /* VirtualWalletDocument.swift */; };
 		A193D8D62871B8B8001FE760 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D52871B8B8001FE760 /* Wallet.swift */; };
 		A193D8D82871B90C001FE760 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D72871B90C001FE760 /* Transaction.swift */; };
 		A193D8DA2871C143001FE760 /* TransactionEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8D92871C143001FE760 /* TransactionEditorView.swift */; };
-		A193D8DC2871C3D3001FE760 /* PriceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A193D8DB2871C3D3001FE760 /* PriceField.swift */; };
-		A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A1A9BD28732E120009E827 /* CurrencyText.swift */; };
 		A1ADEAB828771DAF0098FB9E /* AddTransactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ADEAB728771DAF0098FB9E /* AddTransactionButton.swift */; };
 		A1AFF25E2883CE220041FCB9 /* SectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AFF25D2883CE220041FCB9 /* SectionTitle.swift */; };
 		A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1A29828718D56005885FE /* PrimaryWalletView.swift */; };
@@ -72,8 +70,6 @@
 		A193D8D52871B8B8001FE760 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		A193D8D72871B90C001FE760 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		A193D8D92871C143001FE760 /* TransactionEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEditorView.swift; sourceTree = "<group>"; };
-		A193D8DB2871C3D3001FE760 /* PriceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceField.swift; sourceTree = "<group>"; };
-		A1A1A9BD28732E120009E827 /* CurrencyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyText.swift; sourceTree = SOURCE_ROOT; };
 		A1ADEAB728771DAF0098FB9E /* AddTransactionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionButton.swift; sourceTree = "<group>"; };
 		A1AFF25D2883CE220041FCB9 /* SectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitle.swift; sourceTree = "<group>"; };
 		A1B1A29828718D56005885FE /* PrimaryWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryWalletView.swift; sourceTree = "<group>"; };
@@ -94,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FF86A62928D2E1001B788D /* MyViewLibrary in Frameworks */,
 				A1753298287A6C6A00036022 /* SwiftUI.framework in Frameworks */,
 				A1753296287A6C6A00036022 /* WidgetKit.framework in Frameworks */,
 			);
@@ -148,7 +145,6 @@
 				A193D8D92871C143001FE760 /* TransactionEditorView.swift */,
 				A1E41FA4288C34E40015FF32 /* NewTransactionSheet.swift */,
 				A1AFF25D2883CE220041FCB9 /* SectionTitle.swift */,
-				A193D8DB2871C3D3001FE760 /* PriceField.swift */,
 				A1B1A29828718D56005885FE /* PrimaryWalletView.swift */,
 				A1ADEAB728771DAF0098FB9E /* AddTransactionButton.swift */,
 				A1B1A29A28718FC2005885FE /* RegularWalletRow.swift */,
@@ -161,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				84FF86A22928C300001B788D /* MyViewLibrary */,
-				A1A1A9BD28732E120009E827 /* CurrencyText.swift */,
 				A1F39AF3287171C6005F58DF /* Virtual Wallet */,
 				A1753299287A6C6A00036022 /* Widget */,
 				A1753294287A6C6A00036022 /* Frameworks */,
@@ -216,6 +211,9 @@
 			dependencies = (
 			);
 			name = WidgetExtension;
+			packageProductDependencies = (
+				84FF86A52928D2E1001B788D /* MyViewLibrary */,
+			);
 			productName = WidgetExtension;
 			productReference = A1753293287A6C6A00036022 /* WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -305,7 +303,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A175329B287A6C6A00036022 /* Widget.swift in Sources */,
-				A17532A9287A757500036022 /* CurrencyText.swift in Sources */,
 				A17532A8287A723400036022 /* WidgetDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,10 +318,8 @@
 				A193D8D82871B90C001FE760 /* Transaction.swift in Sources */,
 				A1B1A29B28718FC2005885FE /* RegularWalletRow.swift in Sources */,
 				A1892878287175E6006414D3 /* VirtualWalletDocument.swift in Sources */,
-				A193D8DC2871C3D3001FE760 /* PriceField.swift in Sources */,
 				A1B1A29928718D56005885FE /* PrimaryWalletView.swift in Sources */,
 				A1E41FA5288C34F90015FF32 /* NewTransactionSheet.swift in Sources */,
-				A1A1A9BE28732E120009E827 /* CurrencyText.swift in Sources */,
 				A1F39AF9287171C6005F58DF /* Home.swift in Sources */,
 				A1AFF25E2883CE220041FCB9 /* SectionTitle.swift in Sources */,
 				A1B1A29D287192E9005885FE /* WalletView.swift in Sources */,
@@ -623,6 +618,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		84FF86A32928C334001B788D /* MyViewLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MyViewLibrary;
+		};
+		84FF86A52928D2E1001B788D /* MyViewLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MyViewLibrary;
 		};

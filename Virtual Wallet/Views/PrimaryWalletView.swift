@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MyViewLibrary
 
 struct PrimaryWalletView: View {
     @Binding var wallet: Wallet

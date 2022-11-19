@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MyViewLibrary
 
 struct Home: View {
     @Binding var document: VirtualWalletDocument
