@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "myviewlibrary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://jihulab.com/Yang-Linqing/MyViewLibrary.git",
+      "state" : {
+        "revision" : "d5672111fe839133de980f7fc8b1acf81ca5821b",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84FF86A42928C334001B788D /* MyViewLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 84FF86A32928C334001B788D /* MyViewLibrary */; };
-		84FF86A62928D2E1001B788D /* MyViewLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 84FF86A52928D2E1001B788D /* MyViewLibrary */; };
+		842863072928D9D100E17346 /* MyViewLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 842863062928D9D100E17346 /* MyViewLibrary */; };
+		842863092928DA0000E17346 /* MyViewLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 842863082928DA0000E17346 /* MyViewLibrary */; };
 		A1753296287A6C6A00036022 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1753295287A6C6A00036022 /* WidgetKit.framework */; };
 		A1753298287A6C6A00036022 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1753297287A6C6A00036022 /* SwiftUI.framework */; };
 		A175329B287A6C6A00036022 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A175329A287A6C6A00036022 /* Widget.swift */; };
@@ -57,7 +57,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		84FF86A22928C300001B788D /* MyViewLibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MyViewLibrary; path = ../MyViewLibrary; sourceTree = "<group>"; };
 		A1753293287A6C6A00036022 /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1753295287A6C6A00036022 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A1753297287A6C6A00036022 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -90,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84FF86A62928D2E1001B788D /* MyViewLibrary in Frameworks */,
+				842863092928DA0000E17346 /* MyViewLibrary in Frameworks */,
 				A1753298287A6C6A00036022 /* SwiftUI.framework in Frameworks */,
 				A1753296287A6C6A00036022 /* WidgetKit.framework in Frameworks */,
 			);
@@ -100,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84FF86A42928C334001B788D /* MyViewLibrary in Frameworks */,
+				842863072928D9D100E17346 /* MyViewLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +155,6 @@
 		A1F39AE8287171C6005F58DF = {
 			isa = PBXGroup;
 			children = (
-				84FF86A22928C300001B788D /* MyViewLibrary */,
 				A1F39AF3287171C6005F58DF /* Virtual Wallet */,
 				A1753299287A6C6A00036022 /* Widget */,
 				A1753294287A6C6A00036022 /* Frameworks */,
@@ -212,7 +210,7 @@
 			);
 			name = WidgetExtension;
 			packageProductDependencies = (
-				84FF86A52928D2E1001B788D /* MyViewLibrary */,
+				842863082928DA0000E17346 /* MyViewLibrary */,
 			);
 			productName = WidgetExtension;
 			productReference = A1753293287A6C6A00036022 /* WidgetExtension.appex */;
@@ -234,7 +232,7 @@
 			);
 			name = "Virtual Wallet";
 			packageProductDependencies = (
-				84FF86A32928C334001B788D /* MyViewLibrary */,
+				842863062928D9D100E17346 /* MyViewLibrary */,
 			);
 			productName = "Virtual Wallet";
 			productReference = A1F39AF1287171C6005F58DF /* Virtual Wallet.app */;
@@ -267,6 +265,9 @@
 				Base,
 			);
 			mainGroup = A1F39AE8287171C6005F58DF;
+			packageReferences = (
+				842863052928D9D100E17346 /* XCRemoteSwiftPackageReference "MyViewLibrary" */,
+			);
 			productRefGroup = A1F39AF2287171C6005F58DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -616,13 +617,26 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		842863052928D9D100E17346 /* XCRemoteSwiftPackageReference "MyViewLibrary" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://jihulab.com/Yang-Linqing/MyViewLibrary.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		84FF86A32928C334001B788D /* MyViewLibrary */ = {
+		842863062928D9D100E17346 /* MyViewLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 842863052928D9D100E17346 /* XCRemoteSwiftPackageReference "MyViewLibrary" */;
 			productName = MyViewLibrary;
 		};
-		84FF86A52928D2E1001B788D /* MyViewLibrary */ = {
+		842863082928DA0000E17346 /* MyViewLibrary */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 842863052928D9D100E17346 /* XCRemoteSwiftPackageReference "MyViewLibrary" */;
 			productName = MyViewLibrary;
 		};
 /* End XCSwiftPackageProductDependency section */
