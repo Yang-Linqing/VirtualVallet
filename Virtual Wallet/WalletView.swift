@@ -14,8 +14,13 @@ struct WalletView: View {
     @Environment(\.editMode) private var editMode
     
     var body: some View {
-        List($wallet.transactions, editActions: [.all], selection: $selection) { transaction in
+        List($wallet.transactions, selection: $selection) { transaction in
             TransactionRow(transaction: transaction, suggestions: wallet.transactionTypeSuggestions)
+                .swipeActions {
+                    Button("删除", role: .destructive) {
+                        wallet.deleteTransactions([transaction.id])
+                    }
+                }
         }
         .navigationTitle($wallet.name)
         .toolbar {
