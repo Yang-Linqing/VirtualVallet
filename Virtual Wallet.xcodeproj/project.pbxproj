@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		842863072928D9D100E17346 /* MyViewLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 842863062928D9D100E17346 /* MyViewLibrary */; };
 		842863092928DA0000E17346 /* MyViewLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 842863082928DA0000E17346 /* MyViewLibrary */; };
+		84C2AA46292A074700DE5D02 /* TransactionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2AA45292A074700DE5D02 /* TransactionGroup.swift */; };
 		A1753296287A6C6A00036022 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1753295287A6C6A00036022 /* WidgetKit.framework */; };
 		A1753298287A6C6A00036022 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1753297287A6C6A00036022 /* SwiftUI.framework */; };
 		A175329B287A6C6A00036022 /* Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A175329A287A6C6A00036022 /* Widget.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		84C2AA45292A074700DE5D02 /* TransactionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionGroup.swift; sourceTree = "<group>"; };
 		A1753293287A6C6A00036022 /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1753295287A6C6A00036022 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		A1753297287A6C6A00036022 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -133,6 +135,7 @@
 				A1892877287175E6006414D3 /* VirtualWalletDocument.swift */,
 				A193D8D52871B8B8001FE760 /* Wallet.swift */,
 				A193D8D72871B90C001FE760 /* Transaction.swift */,
+				84C2AA45292A074700DE5D02 /* TransactionGroup.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			files = (
 				A1ADEAB828771DAF0098FB9E /* AddTransactionButton.swift in Sources */,
 				A193D8DA2871C143001FE760 /* TransactionEditorView.swift in Sources */,
+				84C2AA46292A074700DE5D02 /* TransactionGroup.swift in Sources */,
 				A1F39AF5287171C6005F58DF /* VirtualWalletApp.swift in Sources */,
 				A193D8D62871B8B8001FE760 /* Wallet.swift in Sources */,
 				A193D8D82871B90C001FE760 /* Transaction.swift in Sources */,

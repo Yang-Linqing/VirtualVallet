@@ -43,7 +43,7 @@ struct TransactionEditorView: View {
 
 fileprivate let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .none
+    formatter.dateStyle = .long
     formatter.timeStyle = .short
     return formatter
 }()

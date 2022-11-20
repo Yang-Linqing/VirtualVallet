@@ -14,25 +14,6 @@ struct Wallet: Codable, Identifiable, Hashable {
     var transactions: [Transaction]
     
     // MARK: 计算值
-    var transactionGroups: [TransactionGroup] {
-        var dict = [Date: [Transaction]]()
-        let sorted = self.transactions.sorted { lhs, rhs in
-            lhs.date > rhs.date
-        }
-        for transaction in sorted {
-            let calendar = Calendar.current
-            let dateComponents = calendar.dateComponents([.year, .month, .day], from: transaction.date)
-            let date = calendar.date(from: dateComponents) ?? Date()
-            var arr = dict[date] ?? []
-            arr.append(transaction)
-            dict[date] = arr
-        }
-        return dict.map { (key: Date, value: [Transaction]) in
-            TransactionGroup(date: key, transactions: value)
-        }.sorted { lhs, rhs in
-            lhs.date > rhs.date
-        }
-    }
     
     /// 钱包余额。
     ///

@@ -15,7 +15,7 @@ struct WalletView: View {
     
     var body: some View {
         List(selection: $selection) {
-            ForEach(wallet.transactionGroups) { group in
+            ForEach(wallet.transactions.grouped()) { group in
                 Section {
                     ForEach(group.transactions) { transaction in
                         TransactionRow(transaction: $wallet[transaction.id], suggestions: wallet.transactionTypeSuggestions)
@@ -26,9 +26,7 @@ struct WalletView: View {
                             }
                     }
                 } header: {
-                    Text("\(group.date, formatter: dateFormatter)")
-                        .font(.headline)
-                        .foregroundColor(.primary)
+                    SectionTitle(group.title)
                 }
             }
             
