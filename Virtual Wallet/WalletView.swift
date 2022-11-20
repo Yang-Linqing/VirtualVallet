@@ -14,13 +14,24 @@ struct WalletView: View {
     @Environment(\.editMode) private var editMode
     
     var body: some View {
-        List($wallet.transactions, selection: $selection) { transaction in
-            TransactionRow(transaction: transaction, suggestions: wallet.transactionTypeSuggestions)
-                .swipeActions {
-                    Button("删除", role: .destructive) {
-                        wallet.deleteTransactions([transaction.id])
+        List(selection: $selection) {
+            ForEach(wallet.transactionGroups) { group in
+                Section {
+                    ForEach(group.transactions) { transaction in
+                        TransactionRow(transaction: $wallet[transaction.id], suggestions: wallet.transactionTypeSuggestions)
+                            .swipeActions {
+                                Button("删除", role: .destructive) {
+                                    wallet.deleteTransactions([transaction.id])
+                                }
+                            }
                     }
+                } header: {
+                    Text("\(group.date, formatter: dateFormatter)")
+                        .font(.headline)
+                        .foregroundColor(.primary)
                 }
+            }
+            
         }
         .navigationTitle($wallet.name)
         .toolbar {
@@ -103,6 +114,13 @@ struct WalletView: View {
         wallet.squashTransactions(selection)
     }
 }
+
+fileprivate let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .long
+    formatter.timeStyle = .none
+    return formatter
+}()
 
 struct WalletView_Previews: PreviewProvider {
     @State static var wallet = Wallet.sampleSet.randomElement()!

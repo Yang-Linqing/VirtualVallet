@@ -8,31 +8,30 @@
 import Foundation
 
 struct Wallet: Codable, Identifiable, Hashable {
+    // MARK: 存储值
     var id = UUID()
     var name: String
     var transactions: [Transaction]
+    
+    // MARK: 计算值
     var transactionGroups: [TransactionGroup] {
-        var date: Date!
-        var result: [TransactionGroup] = []
-        var group: TransactionGroup!
-        transactions.forEach { transaction in
-            if date == nil {
-                group = TransactionGroup(date: transaction.date, transactions: [transaction])
-                date = transaction.date
-            } else {
-                if Calendar.current.isDate(transaction.date, inSameDayAs: date) {
-                    group.transactions.append(transaction)
-                } else {
-                    result.append(group)
-                    group = TransactionGroup(date: transaction.date, transactions: [transaction])
-                    date = transaction.date
-                }
-            }
+        var dict = [Date: [Transaction]]()
+        let sorted = self.transactions.sorted { lhs, rhs in
+            lhs.date > rhs.date
         }
-        if group != nil {
-            result.append(group)
+        for transaction in sorted {
+            let calendar = Calendar.current
+            let dateComponents = calendar.dateComponents([.year, .month, .day], from: transaction.date)
+            let date = calendar.date(from: dateComponents) ?? Date()
+            var arr = dict[date] ?? []
+            arr.append(transaction)
+            dict[date] = arr
         }
-        return result
+        return dict.map { (key: Date, value: [Transaction]) in
+            TransactionGroup(date: key, transactions: value)
+        }.sorted { lhs, rhs in
+            lhs.date > rhs.date
+        }
     }
     
     /// 钱包余额。
@@ -62,6 +61,7 @@ struct Wallet: Codable, Identifiable, Hashable {
         return result
     }
     
+    // MARK: 更新交易
     mutating func deleteTransactions(_ selection: Set<UUID>) {
         transactions.removeAll { transaction in
             selection.contains(transaction.id)
@@ -89,6 +89,19 @@ struct Wallet: Codable, Identifiable, Hashable {
         }
         deleteTransactions(selection)
         transactions.insert(Transaction(date: newDate, total: newTotal, type: newType), at: index)
+    }
+    
+    subscript(index: UUID) -> Transaction {
+        get {
+            return self.transactions.first { $0.id == index } ?? Transaction()
+        }
+        set(newValue) {
+            guard newValue.id == index else {
+                return
+            }
+            let idx = self.transactions.firstIndex(where: { $0.id == index })!
+            self.transactions[idx] = newValue
+        }
     }
 }
 

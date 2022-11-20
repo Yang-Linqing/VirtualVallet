@@ -43,7 +43,7 @@ struct TransactionEditorView: View {
 
 fileprivate let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .long
+    formatter.dateStyle = .none
     formatter.timeStyle = .short
     return formatter
 }()
@@ -53,15 +53,14 @@ struct TransactionRowContent: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("\(transaction.date, formatter: dateFormatter)")
-                .font(.caption)
-                .fontWeight(.bold)
-                .foregroundColor(.secondary)
             HStack {
                 Text(transaction.type)
+                    .fontWeight(.bold)
                 Spacer()
                 CurrencyText(transaction.total)
             }
+            Text("\(transaction.date, formatter: dateFormatter)")
+                .foregroundColor(.secondary)
         }
     }
 }
