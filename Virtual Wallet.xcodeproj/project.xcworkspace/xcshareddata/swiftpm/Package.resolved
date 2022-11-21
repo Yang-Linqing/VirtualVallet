@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://jihulab.com/Yang-Linqing/MyViewLibrary.git",
       "state" : {
-        "revision" : "d5672111fe839133de980f7fc8b1acf81ca5821b",
-        "version" : "1.0.0"
+        "revision" : "d1ed3712d8395815dea3c2285ca41955acb34a82",
+        "version" : "1.0.1"
       }
     }
   ],
