@@ -72,6 +72,29 @@ struct Wallet: Codable, Identifiable, Hashable {
         transactions.insert(Transaction(date: newDate, total: newTotal, type: newType), at: index)
     }
     
+    mutating func squashTransactionsByType(_ selection: Set<UUID>) {
+        transactions.sort { newer, older in
+            newer.date > older.date
+        }
+        var i = 0
+        var indexOf = [String: Int]()
+        while i < transactions.count {
+            let transaction = transactions[i]
+            
+            if selection.contains(transaction.id) {
+                if let j = indexOf[transaction.type] {
+                    transactions[j].total += transaction.total
+                    transactions.remove(at: i)
+                    continue
+                } else {
+                    indexOf[transaction.type] = i
+                }
+            }
+            
+            i += 1
+        }
+    }
+    
     subscript(index: UUID) -> Transaction {
         get {
             return self.transactions.first { $0.id == index } ?? Transaction()

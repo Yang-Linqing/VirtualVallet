@@ -12,6 +12,7 @@ struct WalletView: View {
     @Binding var wallet: Wallet
     @State private var selection = Set<UUID>()
     @Environment(\.editMode) private var editMode
+    @State private var showSquashSheet = false
     
     var body: some View {
         List(selection: $selection) {
@@ -29,7 +30,6 @@ struct WalletView: View {
                     SectionTitle(group.title)
                 }
             }
-            
         }
         .navigationTitle($wallet.name)
         .toolbar {
@@ -46,12 +46,14 @@ struct WalletView: View {
                     .tint(.red)
                     .disabled(selection.isEmpty)
                     Button {
-                        withAnimation {
-                            squashSelected()
-                        }
+                        showSquashSheet = true
                     } label: {
                         Label("压缩", systemImage: "archivebox")
                             .labelStyle(.titleAndIcon)
+                    }
+                    .confirmationDialog("如何压缩选择的交易？", isPresented: $showSquashSheet, titleVisibility: .visible) {
+                        Button("合并同类项", action: squashSelectedByType)
+                        Button("压缩为一个", action: squashSelected)
                     }
                     .disabled(selection.isEmpty)
                 } else {
@@ -110,6 +112,10 @@ struct WalletView: View {
     
     func squashSelected() {
         wallet.squashTransactions(selection)
+    }
+    
+    func squashSelectedByType() {
+        wallet.squashTransactionsByType(selection)
     }
 }
 
