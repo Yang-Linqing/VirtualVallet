@@ -45,8 +45,12 @@ struct WalletView: View {
                     .tint(.red)
                     .disabled(selection.isEmpty)
                     Menu {
-                        Button("合并同类项", action: squashSelectedByType)
-                        Button("压缩为一个", action: squashSelected)
+                        Button(action: squashSelectedByType) {
+                            Label("合并同类项", systemImage: "list.number")
+                        }
+                        Button(role: .destructive,action: squashSelected) {
+                            Label("压缩为一个", systemImage: "arrow.triangle.merge")
+                        }
                     } label: {
                         Label("压缩", systemImage: "archivebox")
                             .labelStyle(.titleAndIcon)
@@ -59,17 +63,6 @@ struct WalletView: View {
                         }
                     } label: {
                         Label("添加交易", systemImage: "plus.circle.fill")
-                            .labelStyle(.titleAndIcon)
-                    }
-                    Menu {
-                        Button(action: squashSelectedByType) {
-                            Label("合并同类项", systemImage: "list.number")
-                        }
-                        Button(role: .destructive,action: squashSelected) {
-                            Label("压缩为一个", systemImage: "arrow.triangle.merge")
-                        }
-                    } label: {
-                        Label("压缩", systemImage: "archivebox")
                             .labelStyle(.titleAndIcon)
                     }
                 }
