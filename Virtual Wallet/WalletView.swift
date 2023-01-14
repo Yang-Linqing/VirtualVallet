@@ -35,11 +35,7 @@ struct WalletView: View {
         .toolbar {
             ToolbarItemGroup(placement: .bottomBar) {
                 if editMode?.wrappedValue.isEditing == true {
-                    Button(role: .destructive) {
-                        withAnimation {
-                            deleteSelected()
-                        }
-                    } label: {
+                    Button(role: .destructive, action: deleteSelected) {
                         Label("删除", systemImage: "xmark.bin")
                             .labelStyle(.titleAndIcon)
                     }
@@ -58,9 +54,7 @@ struct WalletView: View {
                     .disabled(selection.isEmpty)
                 } else {
                     Button {
-                        withAnimation {
-                            wallet.transactions.insert(Transaction(date: Date(), total: 0, type: ""), at: 0)
-                        }
+                        wallet.transactions.insert(Transaction(date: Date(), total: 0, type: ""), at: 0)
                     } label: {
                         Label("添加交易", systemImage: "plus.circle.fill")
                             .labelStyle(.titleAndIcon)
@@ -94,6 +88,8 @@ struct WalletView: View {
                 }
             }
         }
+        .animation(.default, value: wallet)
+        .animation(.default, value: editMode?.wrappedValue)
     }
     
     var selectedTotal: Int {
