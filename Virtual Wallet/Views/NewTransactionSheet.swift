@@ -113,7 +113,7 @@ struct NewTransactionSheet: View {
     func check(_ wallet: Binding<Wallet>) {
         if wallet.id == incomingWallet?.id {
             var outgoingTransaction = Transaction()
-            outgoingTransaction.date = Date()
+            outgoingTransaction.date = self.date
             outgoingTransaction.total = -abs(self.total)
             if self.type == "" {
                 outgoingTransaction.type = "转至\(targetWallet?.name ?? "")"
@@ -124,7 +124,7 @@ struct NewTransactionSheet: View {
         }
         if wallet.id == targetWallet?.id {
             var incomingTransaction = Transaction()
-            incomingTransaction.date = Date()
+            incomingTransaction.date = self.date
             incomingTransaction.total = abs(self.total)
             if self.type == "" {
                 incomingTransaction.type = "转自\(incomingWallet?.name ?? "")"
