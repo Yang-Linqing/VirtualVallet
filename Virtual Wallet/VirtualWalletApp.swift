@@ -15,6 +15,7 @@ struct VirtualWalletApp: App {
                 Home(document: file.$document)
                     .listStyle(.insetGrouped)
                     .navigationTitle(file.fileURL?.deletingPathExtension().lastPathComponent ?? "")
+                    .navigationBarTitleDisplayMode(.inline)
             } detail: {
                 EmptyView()
             }
