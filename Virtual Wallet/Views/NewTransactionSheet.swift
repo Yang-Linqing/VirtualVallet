@@ -84,7 +84,7 @@ struct NewTransactionSheet: View {
     @ViewBuilder func setTypeSection() -> some View {
         Section {
             DatePicker(selection: $date, label: { Text("时间") })
-            SearchSuggestionTextField("类型", text: $type, suggestions: suggestions)
+            SearchSuggestionTextFieldButton("类型", text: $type, suggestions: suggestions)
         }
     }
     
@@ -184,7 +184,15 @@ struct WalletPicker: View {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .foregroundColor(Color(uiColor: .secondarySystemGroupedBackground))
                 HStack {
-                    Text(selection?.name ?? "无")
+                    if selection != nil {
+                        VStack(alignment: .leading) {
+                            Text(selection!.name)
+                            Text(selection!.balance.currencyString)
+                                .font(.caption)
+                        }
+                    } else {
+                        Text("无")
+                    }
                     Spacer()
                     Divider()
                     Image(systemName: "chevron.down")
