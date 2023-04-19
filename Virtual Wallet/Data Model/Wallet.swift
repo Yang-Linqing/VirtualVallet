@@ -73,25 +73,22 @@ struct Wallet: Codable, Identifiable, Hashable {
     }
     
     mutating func squashTransactionsByType(_ selection: Set<UUID>) {
-        transactions.sort { newer, older in
-            newer.date > older.date
-        }
-        var i = 0
-        var indexOf = [String: Int]()
-        while i < transactions.count {
-            let transaction = transactions[i]
-            
-            if selection.contains(transaction.id) {
-                if let j = indexOf[transaction.type] {
-                    transactions[j].total += transaction.total
-                    transactions.remove(at: i)
-                    continue
-                } else {
-                    indexOf[transaction.type] = i
-                }
+        var newTransactions: [String: Transaction] = [:]
+        for transaction in transactions {
+            guard selection.contains(transaction.id) else {
+                continue
             }
             
-            i += 1
+            let type = transaction.type
+            var oldTransaction = newTransactions[type]
+                ?? Transaction(date: transaction.date, type: type)
+            oldTransaction.total += transaction.total
+            newTransactions[type] = oldTransaction
+        }
+        deleteTransactions(selection)
+        transactions.append(contentsOf: newTransactions.values)
+        transactions.sort { newer, older in
+            newer.date > older.date
         }
     }
     
