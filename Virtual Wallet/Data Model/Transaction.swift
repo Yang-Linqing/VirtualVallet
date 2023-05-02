@@ -8,16 +8,15 @@
 import Foundation
 
 /// 表示一笔交易。
-struct Transaction: Codable, Identifiable, Hashable {
-    var id = UUID()
+class Transaction: Codable, Identifiable, Hashable, ObservableObject {
     
-    var date: Date
+    @Published var date: Date
     
     /// 交易金额。
     ///
     /// 以分为单位。正值使钱包余额增加，负值使钱包余额减少。
-    var total: Int
-    var type: String
+    @Published var total: Int
+    @Published var type: String
     
     init(id: UUID = UUID(), date: Date = Date(), total: Int = 0, type: String = "") {
         self.id = id
@@ -26,6 +25,19 @@ struct Transaction: Codable, Identifiable, Hashable {
         self.type = type
     }
     
+    // MARK: Identifable
+    var id = UUID()
+    
+    
+    // MARK: Hashable
+    static func == (lhs: Transaction, rhs: Transaction) -> Bool {
+        lhs.date == rhs.date &&
+        lhs.total == rhs.total &&
+        lhs.type == rhs.type
+    }
+    
+    
+    // MARK: Sample
     static let sampleSet = [
         Transaction(date: Date(), total: -256, type: "小餐馆"),
         Transaction(date: Date(), total: -5500, type: "KFC"),
