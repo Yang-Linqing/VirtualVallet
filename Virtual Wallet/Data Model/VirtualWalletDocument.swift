@@ -18,6 +18,7 @@ struct VirtualWalletDocument: FileDocument, Codable {
     var primaryWallet: Wallet
     var secondaryWallet: [Wallet]
     var otherWallet: [Wallet]
+    var paymentCards: [Wallet]!
     
     init(
         primaryWallet: Wallet = Wallet(
@@ -29,6 +30,9 @@ struct VirtualWalletDocument: FileDocument, Codable {
         ],
         otherWallet: [Wallet] = [
             Wallet(name: "小金库", transactions: [])
+        ],
+        paymentCards: [Wallet]? = [
+            Wallet(name: "银行卡", transactions: [])
         ]
     ) {
         self.primaryWallet = primaryWallet
@@ -46,6 +50,9 @@ struct VirtualWalletDocument: FileDocument, Codable {
         decoder.dateDecodingStrategy = .iso8601
         let document = try decoder.decode(Self.self, from: data)
         self = document
+        if self.paymentCards == nil {
+            self.paymentCards = []
+        }
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
