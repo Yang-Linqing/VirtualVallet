@@ -18,8 +18,8 @@ struct NewTransactionSheet: View {
     @Environment(\.dismiss) private var dismiss
     
     // MARK: Wizard State
-    @State private var incomingWallet: Wallet?
-    @State private var targetWallet: Wallet?
+    @State private var incomingWallet: VirtualWallet?
+    @State private var targetWallet: VirtualWallet?
     @State private var date = Date()
     @State private var type = ""
     @State private var total = 0
@@ -110,7 +110,7 @@ struct NewTransactionSheet: View {
         dismiss()
     }
     
-    func check(_ wallet: Binding<Wallet>) {
+    func check(_ wallet: Binding<VirtualWallet>) {
         if wallet.id == incomingWallet?.id {
             var outgoingTransaction = Transaction()
             outgoingTransaction.date = self.date
@@ -153,7 +153,7 @@ struct WalletPicker: View {
         set { documentBinding.wrappedValue = newValue }
     }
     
-    @Binding var selection: Wallet?
+    @Binding var selection: VirtualWallet?
     
     var body: some View {
         Menu {

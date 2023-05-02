@@ -15,25 +15,30 @@ fileprivate let logger = Logger(subsystem: "cool.linkin.Virtual-Wallet", categor
 struct VirtualWalletDocument: FileDocument, Codable {
     static var readableContentTypes: [UTType] = [.json]
     
-    var primaryWallet: Wallet
-    var secondaryWallet: [Wallet]
-    var otherWallet: [Wallet]
+    var primaryWallet: VirtualWallet
+    var secondaryWallet: [VirtualWallet]
+    var otherWallet: [VirtualWallet]
+    var paymentCards: [PaymentCard]!
     
     init(
-        primaryWallet: Wallet = Wallet(
+        primaryWallet: VirtualWallet = VirtualWallet(
             name: "每日饮食",
             transactions: []
         ),
-        secondaryWallet: [Wallet] = [
-            Wallet(name: "其他", transactions: [])
+        secondaryWallet: [VirtualWallet] = [
+            VirtualWallet(name: "其他", transactions: [])
         ],
-        otherWallet: [Wallet] = [
-            Wallet(name: "小金库", transactions: [])
+        otherWallet: [VirtualWallet] = [
+            VirtualWallet(name: "小金库", transactions: [])
+        ],
+        paymentCards: [PaymentCard] = [
+            PaymentCard(name: "银行卡", transactions: [])
         ]
     ) {
         self.primaryWallet = primaryWallet
         self.secondaryWallet = secondaryWallet
         self.otherWallet = otherWallet
+        self.paymentCards = paymentCards
     }
     
     init(configuration: ReadConfiguration) throws {
@@ -46,6 +51,9 @@ struct VirtualWalletDocument: FileDocument, Codable {
         decoder.dateDecodingStrategy = .iso8601
         let document = try decoder.decode(Self.self, from: data)
         self = document
+        if self.paymentCards == nil {
+            self.paymentCards = []
+        }
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {

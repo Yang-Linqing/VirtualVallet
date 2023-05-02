@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RegularWalletRow: View {
-    @Binding var wallet: Wallet
+    @Binding var wallet: VirtualWallet
     
     var body: some View {
         NavigationLink {
@@ -24,7 +24,7 @@ struct RegularWalletRow: View {
 }
 
 struct RegularWalletRow_Previews: PreviewProvider {
-    @State static var wallet = Wallet(name: "其他", transactions: [])
+    @State static var wallet = VirtualWallet(name: "其他", transactions: [])
     
     static var previews: some View {
         NavigationStack {

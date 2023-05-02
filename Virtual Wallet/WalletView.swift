@@ -9,7 +9,7 @@ import SwiftUI
 import MyViewLibrary
 
 struct WalletView: View {
-    @Binding var wallet: Wallet
+    @Binding var wallet: VirtualWallet
     @State private var selection = Set<UUID>()
     @Environment(\.editMode) private var editMode
     @State private var showSquashSheet = false
@@ -123,7 +123,7 @@ fileprivate let dateFormatter: DateFormatter = {
 }()
 
 struct WalletView_Previews: PreviewProvider {
-    @State static var wallet = Wallet.sampleSet.randomElement()!
+    @State static var wallet = VirtualWallet.sampleSet.randomElement()!
     
     static var previews: some View {
         NavigationStack {

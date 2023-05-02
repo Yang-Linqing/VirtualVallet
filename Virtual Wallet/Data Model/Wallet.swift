@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Wallet: Codable, Identifiable, Hashable {
-    // MARK: 存储值
-    var id = UUID()
-    var name: String
-    var transactions: [Transaction]
-    
-    // MARK: 计算值
-    
+/// 保存和管理交易数据。
+protocol Wallet: Identifiable {
+    var name: String {get}
+    var transactions: [Transaction] {get set}
+}
+
+extension Wallet {
+    // MARK: 查询交易信息
     /// 钱包余额。
     ///
     /// 值为所有交易金额之和。
@@ -23,12 +23,6 @@ struct Wallet: Codable, Identifiable, Hashable {
             return partialResult + transaction.total
         }
     }
-    
-    static let sampleSet = [
-        Wallet(name: "每日饮食", transactions: Transaction.sample(5)),
-        Wallet(name: "其他", transactions: Transaction.sample()),
-        Wallet(name: "小金库", transactions: Transaction.sample(7))
-    ]
     
     var transactionTypeSuggestions: [String] {
         var suggestions = Set<String>()
@@ -40,6 +34,19 @@ struct Wallet: Codable, Identifiable, Hashable {
             }
         }
         return result
+    }
+    
+    subscript(index: UUID) -> Transaction {
+        get {
+            return self.transactions.first { $0.id == index } ?? Transaction()
+        }
+        set(newValue) {
+            guard newValue.id == index else {
+                return
+            }
+            let idx = self.transactions.firstIndex(where: { $0.id == index })!
+            self.transactions[idx] = newValue
+        }
     }
     
     // MARK: 更新交易
@@ -91,18 +98,18 @@ struct Wallet: Codable, Identifiable, Hashable {
             newer.date > older.date
         }
     }
-    
-    subscript(index: UUID) -> Transaction {
-        get {
-            return self.transactions.first { $0.id == index } ?? Transaction()
-        }
-        set(newValue) {
-            guard newValue.id == index else {
-                return
-            }
-            let idx = self.transactions.firstIndex(where: { $0.id == index })!
-            self.transactions[idx] = newValue
-        }
-    }
 }
 
+struct VirtualWallet: Wallet, Codable, Identifiable, Hashable {
+    // MARK: 存储值
+    var id = UUID()
+    var name: String
+    var transactions: [Transaction]
+    
+    // MARK: 计算值
+    static let sampleSet = [
+        VirtualWallet(name: "每日饮食", transactions: Transaction.sample(5)),
+        VirtualWallet(name: "其他", transactions: Transaction.sample()),
+        VirtualWallet(name: "小金库", transactions: Transaction.sample(7))
+    ]
+}

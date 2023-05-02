@@ -9,7 +9,7 @@ import SwiftUI
 import MyViewLibrary
 
 struct PrimaryWalletView: View {
-    @Binding var wallet: Wallet
+    @Binding var wallet: VirtualWallet
     
     var body: some View {
         NavigationLink {
@@ -29,7 +29,7 @@ struct PrimaryWalletView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             List {
-                PrimaryWalletView(wallet: .constant(Wallet(name: "每日饮食", transactions: [])))
+                PrimaryWalletView(wallet: .constant(VirtualWallet(name: "每日饮食", transactions: [])))
             }
         }
     }

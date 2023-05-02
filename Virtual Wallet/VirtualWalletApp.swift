@@ -11,15 +11,7 @@ import SwiftUI
 struct VirtualWalletApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: VirtualWalletDocument()) { file in
-            NavigationSplitView(columnVisibility: .constant(.doubleColumn)) {
-                Home(document: file.$document)
-                    .listStyle(.insetGrouped)
-                    .navigationTitle(file.fileURL?.deletingPathExtension().lastPathComponent ?? "")
-                    .navigationBarTitleDisplayMode(.inline)
-            } detail: {
-                EmptyView()
-            }
-            .toolbar(.hidden)
+            Home(document: file.$document)
         }
     }
 }
