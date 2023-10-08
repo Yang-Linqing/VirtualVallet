@@ -9,27 +9,19 @@ import SwiftUI
 import MyViewLibrary
 
 struct Home: View {
-    @Binding var document: VirtualWalletDocument
-    
-    private var total: Int {
-        document.primaryWallet.balance + document.secondaryWallet.reduce(0, { partialResult, wallet in
-            partialResult + wallet.balance
-        }) + document.otherWallet.reduce(0, { partialResult, wallet in
-            partialResult + wallet.balance
-        })
-    }
+    @EnvironmentObject private var store: VirtualWalletStore
     
     @State private var showTransferView = false
 
     var body: some View {
         List {
             Section {
-                PrimaryWalletView(wallet: $document.primaryWallet)
+                PrimaryWalletView(wallet: $store.document.primaryWallet)
                 HStack() {
                     VStack(alignment: .leading) {
                         Text("所有钱包")
                             .font(.headline)
-                        CurrencyText(total)
+                        Text(store.total, format: .currency(code: Locale.current.currency?.identifier ?? "CNY"))
                     }
                     Spacer()
                     Button {
@@ -42,20 +34,19 @@ struct Home: View {
                     .tint(Color.primary)
                     .sheet(isPresented: $showTransferView) {
                         NewTransactionSheet()
-                            .document($document)
                     }
                 }
                 .buttonStyle(.plain)
             }
             Section {
-                ForEach($document.secondaryWallet) { wallet in
+                ForEach($store.document.secondaryWallet) { wallet in
                     RegularWalletRow(wallet: wallet)
                 }
                 .onMove { indexSet, newLocation in
-                    document.secondaryWallet.move(fromOffsets: indexSet, toOffset: newLocation)
+                    store.document.secondaryWallet.move(fromOffsets: indexSet, toOffset: newLocation)
                 }
                 .onDelete { indexSet in
-                    document.secondaryWallet.remove(atOffsets: indexSet)
+                    store.document.secondaryWallet.remove(atOffsets: indexSet)
                 }
             } header: {
                 HStack {
@@ -63,7 +54,7 @@ struct Home: View {
                         .font(.headline)
                     Spacer()
                     Button {
-                        document.secondaryWallet.append(Wallet(name: "新的次要钱包", transactions: []))
+                        store.document.secondaryWallet.append(Wallet(name: "新的次要钱包", transactions: []))
                     } label: {
                         Label("添加钱包", systemImage: "plus")
                     }
@@ -71,14 +62,14 @@ struct Home: View {
                 }
             }
             Section {
-                ForEach($document.otherWallet) { wallet in
+                ForEach($store.document.otherWallet) { wallet in
                     RegularWalletRow(wallet: wallet)
                 }
                 .onMove { indexSet, newLocation in
-                    document.otherWallet.move(fromOffsets: indexSet, toOffset: newLocation)
+                    store.document.otherWallet.move(fromOffsets: indexSet, toOffset: newLocation)
                 }
                 .onDelete { indexSet in
-                    document.otherWallet.remove(atOffsets: indexSet)
+                    store.document.otherWallet.remove(atOffsets: indexSet)
                 }
             } header: {
                 HStack {
@@ -86,7 +77,7 @@ struct Home: View {
                         .font(.headline)
                     Spacer()
                     Button {
-                        document.otherWallet.append(Wallet(name: "新的其他钱包", transactions: []))
+                        store.document.otherWallet.append(Wallet(name: "新的其他钱包", transactions: []))
                     } label: {
                         Label("添加钱包", systemImage: "plus")
                     }
@@ -100,7 +91,8 @@ struct Home: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            Home(document: .constant(VirtualWalletDocument()))
+            Home()
         }
+        .environmentObject(VirtualWalletStore())
     }
 }

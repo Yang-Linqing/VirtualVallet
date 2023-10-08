@@ -10,16 +10,13 @@ import SwiftUI
 @main
 struct VirtualWalletApp: App {
     var body: some Scene {
-        DocumentGroup(newDocument: VirtualWalletDocument()) { file in
+        DocumentGroup(newDocument: { VirtualWalletStore() }) { configuration in
             NavigationSplitView(columnVisibility: .constant(.doubleColumn)) {
-                Home(document: file.$document)
-                    .listStyle(.insetGrouped)
-                    .navigationTitle(file.fileURL?.deletingPathExtension().lastPathComponent ?? "")
-                    .navigationBarTitleDisplayMode(.inline)
+                Home()
+                    .navigationTitle(configuration.fileURL?.deletingPathExtension().lastPathComponent ?? "")
             } detail: {
                 EmptyView()
             }
-            .toolbar(.hidden)
         }
     }
 }

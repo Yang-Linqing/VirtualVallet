@@ -8,201 +8,242 @@
 import SwiftUI
 import MyViewLibrary
 
-struct NewTransactionSheet: View {
-    // MARK: Environment Variables
-    @Environment(\.document) private var documentBinding
-    private var document: VirtualWalletDocument {
-        get { documentBinding.wrappedValue }
-        set { documentBinding.wrappedValue = newValue }
-    }
-    @Environment(\.dismiss) private var dismiss
+/// 记录新交易的视图模型
+struct NewTransactionConfig {
+    var total: Double?
+    var incomingWallet: Wallet? = nil
+    var targetWallet: Wallet? = nil
+    var date: Date = Date()
+    var type: String = ""
+    var firstAppear = true
     
-    // MARK: Wizard State
-    @State private var incomingWallet: Wallet?
-    @State private var targetWallet: Wallet?
-    @State private var date = Date()
-    @State private var type = ""
-    @State private var total = 0
-    
-    var body: some View {
-        Form {
-            accountSection()
-            setTypeSection()
-            setTotalSection()
-        }
-        .safeAreaInset(edge: .bottom, content: {
-            Button {
-                saveTransfer()
-            } label: {
-                Text("记账")
-                    .frame(maxWidth: .infinity)
-                    .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-            }
-            .buttonStyle(.borderedProminent)
-            .padding()
-            .background {
-                Rectangle()
-                    .fill(.bar)
-                    .ignoresSafeArea()
-            }
-        })
-        .onAppear {
-            incomingWallet = document.primaryWallet
-        }
+    var isValid: Bool {
+        (total != nil) && (incomingWallet != nil || targetWallet != nil)
     }
     
-    // MARK: 选择钱包
-    @ViewBuilder func accountSection() -> some View {
-        Section {
-            HStack {
-                WalletPicker(selection: $incomingWallet)
-                Image(systemName: "arrow.right")
-                    .imageScale(.large)
-                WalletPicker(selection: $targetWallet)
-            }
-            .listRowInsets(EdgeInsets())
-            .listRowBackground(Color.clear)
-        } header: {
-            HStack {
-                SectionTitle("账户")
-                Spacer()
-                Button("交换") {
-                    let temp = incomingWallet
-                    incomingWallet = targetWallet
-                    targetWallet = temp
-                }
-            }
-            .padding(.top)
-        }
+    mutating func swapWallet() {
+        let tmp = incomingWallet
+        incomingWallet = targetWallet
+        targetWallet = tmp
     }
     
-    // MARK: 选择时间和类型
-    private var suggestions: [String] {
+    var suggestions: [String] {
         (incomingWallet?.transactionTypeSuggestions ?? []) + (targetWallet?.transactionTypeSuggestions ?? [])
     }
-    @State private var presentTypeSuggestion = false
-    @ViewBuilder func setTypeSection() -> some View {
-        Section {
-            DatePicker(selection: $date, label: { Text("时间") })
-            SearchSuggestionTextFieldButton("类型", text: $type, suggestions: suggestions)
-        }
+    
+    mutating func initWithStore(_ store: VirtualWalletStore) {
+        incomingWallet = store.primaryWallet
+        targetWallet = store.secondaryWallet.last
     }
     
-    // MARK: 第三页 输入金额
-    @ViewBuilder func setTotalSection() -> some View {
-        Section {
-            PriceField(value: $total, positiveOnly: true) {
-                Text("总额")
+    func save(to store: VirtualWalletStore) {
+        guard isValid else { return }
+        let intTotal = Int((self.total ?? 0.0) * 100)
+        for wallet in store.allWallet {
+            if wallet.id == incomingWallet?.id {
+                var outgoingTransaction = Transaction()
+                outgoingTransaction.date = self.date
+                outgoingTransaction.total = -abs(intTotal)
+                if self.type == "" {
+                    outgoingTransaction.type = "转至\(targetWallet?.name ?? "")"
+                } else {
+                    outgoingTransaction.type = self.type
+                }
+                store.insert(outgoingTransaction, into: wallet)
             }
-        }
-    }
-    
-    // MARK: 保存
-    func saveTransfer() {
-        check(documentBinding.primaryWallet)
-        documentBinding.secondaryWallet.forEach { wallet in
-            check(wallet)
-        }
-        documentBinding.otherWallet.forEach { wallet in
-            check(wallet)
-        }
-        
-        dismiss()
-    }
-    
-    func check(_ wallet: Binding<Wallet>) {
-        if wallet.id == incomingWallet?.id {
-            var outgoingTransaction = Transaction()
-            outgoingTransaction.date = self.date
-            outgoingTransaction.total = -abs(self.total)
-            if self.type == "" {
-                outgoingTransaction.type = "转至\(targetWallet?.name ?? "")"
-            } else {
-                outgoingTransaction.type = self.type
+            if wallet.id == targetWallet?.id {
+                var incomingTransaction = Transaction()
+                incomingTransaction.date = self.date
+                incomingTransaction.total = abs(intTotal)
+                if self.type == "" {
+                    incomingTransaction.type = "转自\(incomingWallet?.name ?? "")"
+                } else {
+                    incomingTransaction.type = self.type
+                }
+                store.insert(incomingTransaction, into: wallet)
             }
-            wallet.wrappedValue.transactions.insert(outgoingTransaction, at: 0)
-        }
-        if wallet.id == targetWallet?.id {
-            var incomingTransaction = Transaction()
-            incomingTransaction.date = self.date
-            incomingTransaction.total = abs(self.total)
-            if self.type == "" {
-                incomingTransaction.type = "转自\(incomingWallet?.name ?? "")"
-            } else {
-                incomingTransaction.type = self.type
-            }
-            wallet.wrappedValue.transactions.insert(incomingTransaction, at: 0)
         }
     }
 }
 
-struct NewTransactionSheet_Previews: PreviewProvider {
-    @State private static var document = VirtualWalletDocument()
+struct NewTransactionSheet: View {
+    // MARK: Environment Variables
+    @EnvironmentObject private var store: VirtualWalletStore
+    @Environment(\.dismiss) private var dismiss
+    @ScaledMetric(relativeTo: .body) private var digitSize = 50
     
-    static var previews: some View {
-        NewTransactionSheet()
-            .document($document)
+    @State var config: NewTransactionConfig = NewTransactionConfig()
+    
+    enum Field {
+        case digit
     }
+    @FocusState private var focusedField: Field?
+    
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Button {
+                    if let total = config.total {
+                        config.total = -total
+                    }
+                } label: {
+                    Label("切换正负", systemImage: "plus.forwardslash.minus")
+                }
+                .opacity(focusedField == .digit ? 1 : 0)
+                TextField("金额", value: $config.total, format: .currency(code: .localCurrencyID), prompt: Text("金额"))
+                    .font(.system(size: digitSize, weight: .semibold, design: .rounded))
+                    .focused($focusedField, equals: .digit)
+                    .onSubmit {
+                        config.total = config.total
+                        // 这是一个黑魔法
+                    }
+                    .keyboardType(.decimalPad)
+                Button {
+                    config.total = nil
+                } label: {
+                    Label("清零", systemImage: "eraser.line.dashed.fill")
+                }
+                .opacity(focusedField == .digit ? 1 : 0)
+            }
+            .background(.background)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+            .multilineTextAlignment(.center)
+            .labelStyle(.iconOnly)
+            .onTapGesture {
+                focusedField = .digit
+            }
+            .padding(.vertical, digitSize)
+            
+            Group {
+                HStack {
+                    Text("账户信息")
+                    Spacer()
+                    Button {
+                        config.swapWallet()
+                    } label: {
+                        Label("交换", systemImage: "arrow.left.arrow.right")
+                            .bold()
+                    }
+                }
+                Rectangle()
+                    .frame(height: 1)
+                
+                HStack(alignment: .firstTextBaseline) {
+                    Text("付款钱包")
+                    Spacer()
+                    WalletPicker(selection: $config.incomingWallet)
+                }
+                HStack(alignment: .firstTextBaseline) {
+                    Text("收款钱包")
+                    Spacer()
+                    WalletPicker(selection: $config.targetWallet)
+                }
+            }
+            .tint(.primary)
+            
+            Rectangle()
+                .frame(height: 1)
+                .padding(.top)
+            SearchSuggestionTextFieldButton("类型", text: $config.type, suggestions: config.suggestions)
+            DatePicker(selection: $config.date, label: { Text("时间") })
+
+            Spacer()
+            Button{
+                config.save(to: store)
+                dismiss()
+            } label: {
+                Text("记录")
+                    .bold()
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .disabled(!config.isValid)
+            Button {
+                dismiss()
+            } label: {
+                Text("丢弃")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.bordered)
+            .controlSize(.large)
+        }
+        .padding(.horizontal)
+        .background(.background)
+        .ignoresSafeArea(.keyboard)
+        .onTapGesture {
+            focusedField = nil
+            let total = config.total
+            config.total = nil
+            config.total = total
+        }
+        .onAppear {
+            if !config.firstAppear {
+                return
+            }
+            config.firstAppear = false
+            
+            config.initWithStore(store)
+            focusedField = .digit
+        }
+    }
+}
+
+#Preview {
+    NewTransactionSheet()
+        .environmentObject(VirtualWalletStore())
+        .tint(.brown)
 }
 
 struct WalletPicker: View {
-    // MARK: Environment Variables
-    @Environment(\.document) private var documentBinding
-    private var document: VirtualWalletDocument {
-        get { documentBinding.wrappedValue }
-        set { documentBinding.wrappedValue = newValue }
-    }
+    @EnvironmentObject private var store: VirtualWalletStore
     
     @Binding var selection: Wallet?
+    var title = "无"
     
     var body: some View {
         Menu {
-            Button("无") {
+            Button(title) {
                 selection = nil
             }
             Section {
-                Button(document.primaryWallet.name) {
-                    selection = document.primaryWallet
+                Button(store.primaryWallet.name) {
+                    selection = store.document.primaryWallet as Wallet?
                 }
             }
             Section {
-                ForEach(document.secondaryWallet) { wallet in
+                ForEach(store.secondaryWallet) { wallet in
                     Button(wallet.name) {
-                        selection = wallet
+                        selection = wallet as Wallet?
                     }
                 }
             }
             Section {
-                ForEach(document.otherWallet) { wallet in
+                ForEach(store.otherWallet) { wallet in
                     Button(wallet.name) {
-                        selection = wallet
+                        selection = wallet as Wallet?
                     }
                 }
             }
         } label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .foregroundColor(Color(uiColor: .secondarySystemGroupedBackground))
-                HStack {
-                    if selection != nil {
-                        VStack(alignment: .leading) {
-                            Text(selection!.name)
-                            Text(selection!.balance.currencyString)
-                                .font(.caption)
-                        }
-                    } else {
-                        Text("无")
+            HStack {
+                if selection != nil {
+                    VStack(alignment: .trailing) {
+                        Text(selection!.name)
+                            .bold()
+                        Text(selection!.balance.currencyString)
+                            .font(.caption)
                     }
-                    Spacer()
-                    Divider()
-                    Image(systemName: "chevron.down")
-                        .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                } else {
+                    Text(title)
+                        .bold()
                 }
-                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 8))
             }
-            .tint(Color.primary)
         }
-
     }
     
 }
