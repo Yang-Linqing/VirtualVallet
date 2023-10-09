@@ -10,6 +10,7 @@ import MyViewLibrary
 
 struct Home: View {
     @EnvironmentObject private var store: VirtualWalletStore
+    @Environment(\.undoManager) private var undoManager
     
     @State private var showTransferView = false
 
@@ -84,6 +85,9 @@ struct Home: View {
 
                 }
             }
+        }
+        .onAppear {
+            store.undoManager = undoManager
         }
     }
 }

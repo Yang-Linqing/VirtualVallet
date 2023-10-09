@@ -16,7 +16,14 @@ fileprivate let logger = Logger(subsystem: "cool.linkin.Virtual-Wallet", categor
 final class VirtualWalletStore: ReferenceFileDocument {
     static var readableContentTypes: [UTType] = [.json]
     
-    @Published var document: VirtualWalletDocument
+    var undoManager: UndoManager?
+    @Published var document: VirtualWalletDocument {
+        didSet {
+            undoManager?.registerUndo(withTarget: self, handler: { docStore in
+                docStore.document = oldValue
+            })
+        }
+    }
     
     init() {
         self.document = VirtualWalletDocument()
