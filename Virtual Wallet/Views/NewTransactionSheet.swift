@@ -71,6 +71,7 @@ struct NewTransactionSheet: View {
     @EnvironmentObject private var store: VirtualWalletStore
     @Environment(\.dismiss) private var dismiss
     @ScaledMetric(relativeTo: .body) private var digitSize = 50
+    @ScaledMetric(relativeTo: .body) private var buttonHeight = 30
     
     @State var config: NewTransactionConfig = NewTransactionConfig()
     
@@ -150,27 +151,30 @@ struct NewTransactionSheet: View {
             DatePicker(selection: $config.date, label: { Text("时间") })
 
             Spacer()
-            Button{
-                config.save(to: store)
-                dismiss()
-            } label: {
-                Text("记录")
-                    .bold()
-                    .frame(maxWidth: .infinity)
+            GeometryReader { proxy in
+                HStack {
+                    Button{
+                        config.save(to: store)
+                        dismiss()
+                    } label: {
+                        Text("记录")
+                            .bold()
+                            .frame(maxWidth: .infinity, minHeight: buttonHeight, idealHeight: buttonHeight)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(!config.isValid)
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("丢弃")
+                            .frame(maxWidth: proxy.size.width / 3, minHeight: buttonHeight, idealHeight: buttonHeight)
+                    }
+                    .buttonStyle(.bordered)
+                }
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-            .disabled(!config.isValid)
-            Button {
-                dismiss()
-            } label: {
-                Text("丢弃")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.bordered)
-            .controlSize(.large)
+            .frame(height: buttonHeight)
         }
-        .padding(.horizontal)
+        .padding()
         .background(.background)
         .ignoresSafeArea(.keyboard)
         .onTapGesture {
