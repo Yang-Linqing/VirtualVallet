@@ -10,7 +10,7 @@ import MyViewLibrary
 
 /// 记录新交易的视图模型
 struct NewTransactionConfig {
-    var total: Double?
+    var total: Decimal?
     var incomingWallet: Wallet? = nil
     var targetWallet: Wallet? = nil
     var date: Date = Date()
@@ -38,7 +38,7 @@ struct NewTransactionConfig {
     
     func save(to store: VirtualWalletStore) {
         guard isValid else { return }
-        let intTotal = Int((self.total ?? 0.0) * 100)
+        let intTotal = Int(truncating: NSDecimalNumber(decimal: ((self.total ?? 0) * 100)))
         for wallet in store.allWallet {
             if wallet.id == incomingWallet?.id {
                 var outgoingTransaction = Transaction()
