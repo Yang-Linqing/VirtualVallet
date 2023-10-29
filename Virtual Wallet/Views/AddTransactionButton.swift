@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddTransactionButton: View {
-    @Binding var document: VirtualWalletDocument
+    @Binding var document: VirtualWalletDocumentV1
     
     @State private var shouldPresentEditor = false
     
@@ -34,7 +34,7 @@ struct AddTransactionButton: View {
 }
 
 struct AddTransactionButton_Previews: PreviewProvider {
-    @State static var document = VirtualWalletDocument()
+    @State static var document = VirtualWalletDocumentV1()
     
     static var previews: some View {
         AddTransactionButton(document: $document)

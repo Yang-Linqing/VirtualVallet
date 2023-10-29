@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TransactionGroup: Identifiable {
+struct TransactionGroupV1: Identifiable {
     
     enum DateType: Hashable, Comparable {
         case month(Date), thisMonth, thisWeek, today
@@ -46,26 +46,26 @@ struct TransactionGroup: Identifiable {
     }
     
     var id: DateType
-    var transactions: [Transaction]
+    var transactions: [TransactionV1]
     
     var title: String {
         self.id.description
     }
 }
 
-typealias TransactionGroupDictionary = [TransactionGroup.DateType: [Transaction]]
+typealias TransactionGroupDictionary = [TransactionGroupV1.DateType: [TransactionV1]]
 
-extension Array where Element == Transaction {
-    func grouped() -> [TransactionGroup] {
+extension Array where Element == TransactionV1 {
+    func grouped() -> [TransactionGroupV1] {
         let sorted = self.sorted { $0.date > $1.date }
         let dict: TransactionGroupDictionary = sorted.reduce(into: TransactionGroupDictionary()) { partialResult, transaction in
-            let dateType = TransactionGroup.DateType.from(transaction.date)
+            let dateType = TransactionGroupV1.DateType.from(transaction.date)
             var arr = partialResult[dateType] ?? []
             arr.append(transaction)
             partialResult[dateType] = arr
         }
-        return dict.map { (key: TransactionGroup.DateType, value: [Transaction]) in
-            TransactionGroup(id: key, transactions: value)
+        return dict.map { (key: TransactionGroupV1.DateType, value: [TransactionV1]) in
+            TransactionGroupV1(id: key, transactions: value)
         }.sorted { $0.id > $1.id }
     }
 }

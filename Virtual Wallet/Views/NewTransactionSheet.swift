@@ -31,12 +31,12 @@ struct NewTransactionConfig {
         (incomingWallet?.transactionTypeSuggestions ?? []) + (targetWallet?.transactionTypeSuggestions ?? [])
     }
     
-    mutating func initWithStore(_ store: VirtualWalletStore) {
+    mutating func initWithStore(_ store: VirtualWalletStoreV1) {
         incomingWallet = store.primaryWallet
         targetWallet = store.secondaryWallet.last
     }
     
-    func save(to store: VirtualWalletStore) {
+    func save(to store: VirtualWalletStoreV1) {
         guard isValid else { return }
         let intTotal = Int(truncating: NSDecimalNumber(decimal: ((self.total ?? 0) * 100)))
         for wallet in store.allWallet {
@@ -68,7 +68,7 @@ struct NewTransactionConfig {
 
 struct NewTransactionSheet: View {
     // MARK: Environment Variables
-    @EnvironmentObject private var store: VirtualWalletStore
+    @EnvironmentObject private var store: VirtualWalletStoreV1
     @Environment(\.dismiss) private var dismiss
     @ScaledMetric(relativeTo: .body) private var digitSize = 50
     @ScaledMetric(relativeTo: .body) private var buttonHeight = 30
@@ -197,12 +197,12 @@ struct NewTransactionSheet: View {
 
 #Preview {
     NewTransactionSheet()
-        .environmentObject(VirtualWalletStore())
+        .environmentObject(VirtualWalletStoreV1())
         .tint(.brown)
 }
 
 struct WalletPicker: View {
-    @EnvironmentObject private var store: VirtualWalletStore
+    @EnvironmentObject private var store: VirtualWalletStoreV1
     
     @Binding var selection: Wallet?
     var title = "无"

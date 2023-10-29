@@ -1,5 +1,5 @@
 //
-//  VirtualWalletDocument.swift
+//  VirtualWalletDocumentV1.swift
 //  Virtual Wallet
 //
 //  Created by 杨林青 on 2022/7/3.
@@ -13,11 +13,11 @@ import WidgetKit
 fileprivate let logger = Logger(subsystem: "cool.linkin.Virtual-Wallet", category: "Document")
 
 /// 虚拟钱包的数据模型，负责左右的数据的存储和操作。
-final class VirtualWalletStore: ReferenceFileDocument {
+final class VirtualWalletStoreV1: ReferenceFileDocument {
     static var readableContentTypes: [UTType] = [.json]
     
     var undoManager: UndoManager?
-    @Published var document: VirtualWalletDocument {
+    @Published var document: VirtualWalletDocumentV1 {
         didSet {
             undoManager?.registerUndo(withTarget: self, handler: { docStore in
                 docStore.document = oldValue
@@ -26,7 +26,7 @@ final class VirtualWalletStore: ReferenceFileDocument {
     }
     
     init() {
-        self.document = VirtualWalletDocument()
+        self.document = VirtualWalletDocumentV1()
     }
     
     init(configuration: ReadConfiguration) throws {
@@ -37,14 +37,14 @@ final class VirtualWalletStore: ReferenceFileDocument {
         }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        self.document = try decoder.decode(VirtualWalletDocument.self, from: data)
+        self.document = try decoder.decode(VirtualWalletDocumentV1.self, from: data)
     }
     
-    func snapshot(contentType: UTType) throws -> VirtualWalletDocument {
+    func snapshot(contentType: UTType) throws -> VirtualWalletDocumentV1 {
         return self.document
     }
     
-    func fileWrapper(snapshot: VirtualWalletDocument, configuration: WriteConfiguration) throws -> FileWrapper {
+    func fileWrapper(snapshot: VirtualWalletDocumentV1, configuration: WriteConfiguration) throws -> FileWrapper {
         logger.log("开始保存文件。")
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
@@ -70,18 +70,18 @@ final class VirtualWalletStore: ReferenceFileDocument {
     }
 }
 
-extension VirtualWalletStore {
-    var primaryWallet: Wallet {
+extension VirtualWalletStoreV1 {
+    var primaryWallet: WalletV1 {
         document.primaryWallet
     }
-    var secondaryWallet: [Wallet] {
+    var secondaryWallet: [WalletV1] {
         document.secondaryWallet
     }
-    var otherWallet: [Wallet] {
+    var otherWallet: [WalletV1] {
         document.otherWallet
     }
     
-    var allWallet: [Wallet] {
+    var allWallet: [WalletV1] {
         [primaryWallet] + secondaryWallet + otherWallet
     }
     
@@ -94,7 +94,7 @@ extension VirtualWalletStore {
         return Double(intTotal) / 100
     }
     
-    func insert(_ transaction: Transaction, into wallet: Wallet) {
+    func insert(_ transaction: TransactionV1, into wallet: WalletV1) {
         if primaryWallet.id == wallet.id {
             document.primaryWallet.transactions.insert(transaction, at: 0)
         }
@@ -114,22 +114,22 @@ extension VirtualWalletStore {
 }
 
 /// 旧的虚拟钱包 JSON 文档模型。现在用于描述 JSON 根对象。
-struct VirtualWalletDocument: Codable {
+struct VirtualWalletDocumentV1: Codable {
     
-    var primaryWallet: Wallet
-    var secondaryWallet: [Wallet]
-    var otherWallet: [Wallet]
+    var primaryWallet: WalletV1
+    var secondaryWallet: [WalletV1]
+    var otherWallet: [WalletV1]
     
     init(
-        primaryWallet: Wallet = Wallet(
+        primaryWallet: WalletV1 = WalletV1(
             name: "每日饮食",
             transactions: []
         ),
-        secondaryWallet: [Wallet] = [
-            Wallet(name: "其他", transactions: [])
+        secondaryWallet: [WalletV1] = [
+            WalletV1(name: "其他", transactions: [])
         ],
-        otherWallet: [Wallet] = [
-            Wallet(name: "小金库", transactions: [])
+        otherWallet: [WalletV1] = [
+            WalletV1(name: "小金库", transactions: [])
         ]
     ) {
         self.primaryWallet = primaryWallet

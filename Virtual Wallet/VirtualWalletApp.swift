@@ -10,13 +10,9 @@ import SwiftUI
 @main
 struct VirtualWalletApp: App {
     var body: some Scene {
-        DocumentGroup(newDocument: { VirtualWalletStore() }) { configuration in
-            NavigationSplitView(columnVisibility: .constant(.doubleColumn)) {
-                Home()
-                    .navigationTitle(configuration.fileURL?.deletingPathExtension().lastPathComponent ?? "")
-            } detail: {
-                EmptyView()
-            }
+        DocumentGroup(newDocument: { VirtualWalletStoreV1() }) { configuration in
+//            Home()
+            EmptyView()
         }
     }
 }

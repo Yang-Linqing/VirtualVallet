@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Wallet: Codable, Identifiable, Hashable {
+struct WalletV1: Codable, Identifiable, Hashable {
     // MARK: 存储值
     var id = UUID()
     var name: String
-    var transactions: [Transaction]
+    var transactions: [TransactionV1]
     
     // MARK: 计算值
     
@@ -25,9 +25,9 @@ struct Wallet: Codable, Identifiable, Hashable {
     }
     
     static let sampleSet = [
-        Wallet(name: "每日饮食", transactions: Transaction.sample(5)),
-        Wallet(name: "其他", transactions: Transaction.sample()),
-        Wallet(name: "小金库", transactions: Transaction.sample(7))
+        WalletV1(name: "每日饮食", transactions: TransactionV1.sample(5)),
+        WalletV1(name: "其他", transactions: TransactionV1.sample()),
+        WalletV1(name: "小金库", transactions: TransactionV1.sample(7))
     ]
     
     var transactionTypeSuggestions: [String] {
@@ -69,11 +69,11 @@ struct Wallet: Codable, Identifiable, Hashable {
             newType = types.first!
         }
         deleteTransactions(selection)
-        transactions.insert(Transaction(date: newDate, total: newTotal, type: newType), at: index)
+        transactions.insert(TransactionV1(date: newDate, total: newTotal, type: newType), at: index)
     }
     
     mutating func squashTransactionsByType(_ selection: Set<UUID>) {
-        var newTransactions: [String: Transaction] = [:]
+        var newTransactions: [String: TransactionV1] = [:]
         for transaction in transactions {
             guard selection.contains(transaction.id) else {
                 continue
@@ -81,7 +81,7 @@ struct Wallet: Codable, Identifiable, Hashable {
             
             let type = transaction.type
             var oldTransaction = newTransactions[type]
-                ?? Transaction(date: transaction.date, type: type)
+                ?? TransactionV1(date: transaction.date, type: type)
             oldTransaction.total += transaction.total
             newTransactions[type] = oldTransaction
         }
@@ -92,9 +92,9 @@ struct Wallet: Codable, Identifiable, Hashable {
         }
     }
     
-    subscript(index: UUID) -> Transaction {
+    subscript(index: UUID) -> TransactionV1 {
         get {
-            return self.transactions.first { $0.id == index } ?? Transaction()
+            return self.transactions.first { $0.id == index } ?? TransactionV1()
         }
         set(newValue) {
             guard newValue.id == index else {

@@ -9,7 +9,7 @@ import SwiftUI
 import MyViewLibrary
 
 struct Home: View {
-    @EnvironmentObject private var store: VirtualWalletStore
+    @EnvironmentObject private var store: VirtualWalletStoreV1
     @Environment(\.undoManager) private var undoManager
     
     @State private var showTransferView = false
@@ -97,6 +97,6 @@ struct ContentView_Previews: PreviewProvider {
         NavigationStack {
             Home()
         }
-        .environmentObject(VirtualWalletStore())
+        .environmentObject(VirtualWalletStoreV1())
     }
 }
